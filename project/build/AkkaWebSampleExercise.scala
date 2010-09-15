@@ -92,9 +92,9 @@ class AkkaWebSampleExercise(info: ProjectInfo) extends DefaultWebProject(info)  
 
     // lazy val jettyServer    = "org.eclipse.jetty"      % "jetty-distribution"  % ECLIPSE_JETTY_VERSION  % "test"
     lazy val jettyBase      = "org.mortbay.jetty"      % "jetty"           % MORTBAY_JETTY_VERSION   % "test"
-    lazy val jettyServer    = "org.mortbay.jetty"      % "jetty-server"    % MORTBAY_JETTY_VERSION   % "test"
-    lazy val jettyWebApp    = "org.mortbay.jetty"      % "jetty-webapp"    % MORTBAY_JETTY_VERSION   % "test"
-    lazy val jettyServlets  = "org.mortbay.jetty"      % "jetty-servlets"  % MORTBAY_JETTY_VERSION   % "test"
+    // lazy val jettyServer    = "org.mortbay.jetty"      % "jetty-server"    % MORTBAY_JETTY_VERSION   % "test"
+    // lazy val jettyWebApp    = "org.mortbay.jetty"      % "jetty-webapp"    % MORTBAY_JETTY_VERSION   % "test"
+    // lazy val jettyServlets  = "org.mortbay.jetty"      % "jetty-servlets"  % MORTBAY_JETTY_VERSION   % "test"
 
     lazy val scalatest      = "org.scalatest"          % "scalatest"           % SCALATEST_VERSION % "test"
     lazy val junit          = "junit"                  % "junit"               % "4.5"             % "test"
@@ -107,7 +107,7 @@ class AkkaWebSampleExercise(info: ProjectInfo) extends DefaultWebProject(info)  
     configgy, 
     liftJSON, 
     mongo, mongoScalaDriver,
-    jettyBase, jettyServer, jettyWebApp, jettyServlets,
+    jettyBase, // jettyServer, jettyWebApp, jettyServlets,
     scalatest, junit)
 
 	/* Embedded Jetty web server */
