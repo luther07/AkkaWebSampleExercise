@@ -23,11 +23,16 @@ case class CalculateStatistics(criteria: CriteriaMap) extends InstrumentCalculat
 /**
  * InstrumentAnalysisServer is a worker that calculates (or simply fetches...) statistics for financial instruments.
  * It reads data from and writes results to a DataStorageServer, which it supervises.
+ * It is parameterized by the type of the date time values used as timestamps.
+ * TODO: The relationship and management of these servers, DataStorageServers and DataStores is
+ * convoluted and messy. Refactor...
  */
-class InstrumentAnalysisServer(val service: String) extends Transactor 
-    with ActorSupervision with ActorUtil with PingHandler with Logging {
+class InstrumentAnalysisServer(val service: String, dataStorageServer: ActorRef) extends Transactor 
+    with ActorUtil with ActorFactory with PingHandler with Logging {
   
   val actorName = "InstrumentAnalysisServer("+service+")"
+  
+  manageNewActor(dataStorageServer)
   
   /**
    * The message handler calls the "pingHandler" first. If it doesn't match on the
@@ -38,10 +43,6 @@ class InstrumentAnalysisServer(val service: String) extends Transactor
 
   def defaultHandler: PartialFunction[Any, Unit] = {
     case CalculateStatistics(criteria) => self.reply(helper.calculateStatistics(criteria))
-  }
-  
-  lazy val dataStorageServer = getOrMakeActorFor(service+"_data_storage_server") {
-    name => new DataStorageServer(name)
   }
   
   override protected def subordinatesToPing: List[ActorRef] = List(dataStorageServer)
@@ -71,13 +72,11 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
   protected def fetchPrices(
         instruments: List[Instrument], statistics: List[InstrumentStatistic], 
         start: DateTime, end: DateTime): JValue = {
-    val startMillis = start.getMillis
-    val endMillis   = end.getMillis
-    (dataStorageServer !! Get(("start" -> startMillis) ~ ("end" -> endMillis))) match {
+    (dataStorageServer !! Get(("start" -> start) ~ ("end" -> end))) match {
       case None => 
         Pair("warning", "Nothing returned for query (start, end) = (" + start + ", " + end + ")")
       case Some(result) => 
-        formatPriceResults(filter(result, instruments), instruments, statistics, startMillis, endMillis)
+        formatPriceResults(filter(result), instruments, statistics, start, end)
     }
   }
   
@@ -85,25 +84,11 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
    * A "hook" method that could be used to filter by instrument (and maybe statistics) criteria. 
    * However, in general, it would be better to filter in the DB query itself!
    */
-  protected def filter(json: JValue, instruments: List[Instrument]): JValue = {
-    val names = Instrument.toSymbolNames(instruments)
-    // log.error ("json: "+json.toString)
-    // log.error ("json.values: "+json.values.toString)
-    // log.error ("symbol: "+(json \\ "symbol").toString)
-    json match {
-      case JArray(list) => list filter { element => 
-        (element \\ "symbol") match {
-          case JField("symbol", x) if (names.exists(x == JString(_))) => true
-          case _ => false
-        }
-      }
-      case _ => true
-    }
-  }
+  protected def filter(json: JValue): JValue = json
   
   // Public visibility, for testing purposes.
   def formatPriceResults(
-      json: JValue, instruments: List[Instrument], statistics: List[InstrumentStatistic], start: Long, end: Long): JValue = {
+      json: JValue, instruments: List[Instrument], statistics: List[InstrumentStatistic], start: DateTime, end: DateTime): JValue = {
     val results = json match {
       case JNothing => toJValue(Nil)  // Use an empty array as the result
       case x => x
@@ -113,7 +98,7 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
   }
   
   /** Extract and format the data so it's more convenient when returned to the UI. */
-  protected def toNiceFormat(instruments: List[Instrument], statistics: List[InstrumentStatistic], start: Long, end: Long): Map[String, Any] = 
+  protected def toNiceFormat(instruments: List[Instrument], statistics: List[InstrumentStatistic], start: DateTime, end: DateTime): Map[String, Any] = 
     Map(
       "instruments" -> Instrument.toSymbolNames(instruments),
       "statistics"  -> statistics,

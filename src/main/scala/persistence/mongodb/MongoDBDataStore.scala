@@ -18,7 +18,7 @@ class MongoDBDataStore(
     val dataBaseName: String      = MongoDBDataStore.MONGODB_SERVER_DBNAME,
     val hostName: String          = MongoDBDataStore.MONGODB_SERVER_HOSTNAME,
     val port: Int                 = MongoDBDataStore.MONGODB_SERVER_PORT)
-      extends DataStore[JSONRecord] with Logging {
+      extends DataStore with Logging {
 
   lazy val name = collectionName
   
@@ -29,7 +29,8 @@ class MongoDBDataStore(
   // already exists. So, we catch it and call getCollection.
   lazy val collection = try {
     val coll = dataBase.createCollection(collectionName, Map.empty[String,Any])  // options
-    coll ensureIndex Map("timestamp" -> 1)
+    // We setup indices when we create the collections; otherwise, do this:
+    // coll ensureIndex Map(JSONRecord.timestampKey -> 1)
     coll asScala
   } catch {
     case ex: MongoException => 
@@ -38,9 +39,6 @@ class MongoDBDataStore(
   }
   
   def add(record: JSONRecord): Unit = collection << record
-  
-  // def map[T](f: JSONRecord => T) = 
-  //   collection map { dbo => f(JSONRecord(dbo.toMap)) } toIterable
   
   def getAll() = cursorToRecords(collection.find())
 
@@ -51,12 +49,12 @@ class MongoDBDataStore(
     case Some(dbo) => Some(JSONRecord(dbo.toMap))
   }
   
-  def range(from: Long, until: Long, maxNum: Int): Iterable[JSONRecord] = try {
-    // JSONRecord where { (JSONRecord.timestamp is_>= from) and (JSONRecord.timestamp is_< until) } sortBy JSONRecord.timestamp.ascending in collection
+  def range(from: DateTime, until: DateTime, maxNum: Int): Iterable[JSONRecord] = try {
     val query = new BasicDBObject()
-    query.put("timestamp", new BasicDBObject("$gte", from).append("$lt", until))
-
-    val cursor = collection.find(query).sort(new BasicDBObject("timestamp", 1))
+    query.put(JSONRecord.timestampKey, 
+              new BasicDBObject("$gte", dateTimeToAnyValue(from)).append("$lt", dateTimeToAnyValue(until)))
+    val cursor = collection.find(query).sort(new BasicDBObject(JSONRecord.timestampKey, 1))
+    log.info("db name: query, cursor.count, maxNum: "+collection.getFullName+", "+query+", "+cursor.count+", "+maxNum)
     if (cursor.count > maxNum)
       cursorToRecords(cursor.skip(cursor.count - maxNum).limit(maxNum))
     else
@@ -74,12 +72,20 @@ class MongoDBDataStore(
     }
     buff
   }
+  
+  /**
+   * Convert a DateTime to whatever type is actually used in the data records.
+   * This implementation converts the input DateTime to milliseconds. 
+   * Subclasses can transform the input DateTime as appropriate.
+   */
+  protected def dateTimeToAnyValue(dateTime: DateTime): Any = dateTime.getMillis
 }
 
 object MongoDBDataStore extends Logging {
-  val MONGODB_SERVER_HOSTNAME = config.getString("akka.storage.mongodb.hostname", "127.0.0.1")
-  val MONGODB_SERVER_DBNAME = config.getString("akka.storage.mongodb.dbname", "statistics")
-  val MONGODB_SERVER_PORT = config.getInt("akka.storage.mongodb.port", 27017)
+  val mongodbConfigPrefix = "akka.remote.server.server.client.storage.mongodb"
+  val MONGODB_SERVER_HOSTNAME = config.getString(mongodbConfigPrefix+".hostname", "127.0.0.1")
+  val MONGODB_SERVER_DBNAME = config.getString(mongodbConfigPrefix+".dbname", "statistics")
+  val MONGODB_SERVER_PORT = config.getInt(mongodbConfigPrefix+".port", 27017)
   
   def getDb(
       dbName: String   = MONGODB_SERVER_DBNAME,

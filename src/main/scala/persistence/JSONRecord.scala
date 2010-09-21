@@ -3,26 +3,22 @@ import org.chicagoscala.awse.util.json.JSONMap._
 import net.liftweb.json.JsonAST._
 import net.liftweb.json.JsonDSL._
 import net.liftweb.json.JsonParser.parse
+import org.joda.time._
 
 /**
  * A wrapper around a Lift JSON object.
  */
-case class JSONRecord(json: JValue) extends RecordWithTimestamp {
+case class JSONRecord(json: JValue) {
   
-  val timestamp = (for { 
-    JField("timestamp", JInt(timestamp)) <- json
-  } yield timestamp.toLong) toList match {
-    case Nil => throw JSONRecord.InvalidJSONException(json)
-    case head :: tail => head
-  }
-  
+  val timestamp: DateTime = determineTimestamp(json)
+
   /**
    * Convert the JSON object to a Map. To avoid problems where longs get converted to
    * doubles by Mongo, we convert any BigInts to longs.
    */ 
   def toMap = convertBigIntsToLongs(json.values.asInstanceOf[Map[String,Any]])
   
-  def ++(other: JSONRecord): JSONRecord = this ++ other.json
+  def ++(other: JSONRecord): JSONRecord = JSONRecord(json ++ other.json)
   def ++(other: JValue): JSONRecord     = JSONRecord(json ++ other)
     
   /** Merge two records. The "other's" JSON overwrites matching keys in this JSON. */
@@ -50,18 +46,52 @@ case class JSONRecord(json: JValue) extends RecordWithTimestamp {
     case bi: BigInt => bi.longValue
     case _ => x
   }
+
+  protected def determineTimestamp(json: JValue): DateTime = 
+    (for { 
+      JField(key, timestamp) <- json
+      if key == JSONRecord.timestampKey
+    } yield jValueToTimestamp(timestamp)) toList match {
+      case Nil => throw new JSONRecord.InvalidJSONException(json)
+      case head :: _ => head
+    }
+  
+  def jValueToTimestamp(jv: JValue): DateTime = try {
+    jv match {
+      case JInt(value) => new DateTime(value.toLong)
+      case JString(value) => new DateTime(value)
+      case _ => throw new JSONRecord.UnsupportedTimestampTypeException(jv)
+    }
+  } catch {
+    case th: JSONRecord.UnsupportedTimestampTypeException => throw th
+    case th => throw new JSONRecord.InvalidJSONException(jv, th)
+  }
 }
 
 object JSONRecord {
 
-  case class InvalidJSONException(json: JValue) extends RuntimeException(
-    "JSON must have a timestamp key-value: "+compact(render(json)))
-
-  // This apply is added automatically by the case class declaration:
-  // def apply(json: JValue): JSONRecord = new JSONRecord(json)
-  def apply[K,V](map: Map[K,V]): JSONRecord = new JSONRecord(map)
-  def apply[K,V](jmap: java.util.Map[K,V]): JSONRecord = JSONRecord(javaMapToMap(jmap))
+  case class InvalidJSONException(json: JValue, cause: Throwable) extends RuntimeException(
+    "JSON must have a valid " + timestampKey + " key-value: " + compact(render(json)), cause) {
     
+    def this(json: JValue) = this(json, null)
+  }
+  
+  case class UnsupportedTimestampTypeException(json: JValue, cause: Throwable) extends RuntimeException(
+    "The timestamp value " + compact(render(json)) + " isn't one that is supported, Long or String", cause) {
+    
+    def this(json: JValue) = this(json, null)
+  }
+
+  // Should these values really be public? In a widely used public API, probably not, 
+  // but in our restricted usage, the overhead of tighter encapsulation isn't really that valuable.
+  val defaultTimestampKey = "timestamp"
+  var timestampKey = defaultTimestampKey
+
+  // Already supplied by the case keyword:
+  // def apply(json: JValue): JSONRecord 
+  def apply[K,V](map: Map[K,V]): JSONRecord = new JSONRecord(map)
+  def apply[K,V](jmap: java.util.Map[K,V]): JSONRecord = new JSONRecord(javaMapToMap(jmap))  
+  
   def jsonWithoutId(record: JSONRecord) = record.json match {
     case jo: JObject => JObject(jo.obj filter { 
       case JField("_id", value) => false

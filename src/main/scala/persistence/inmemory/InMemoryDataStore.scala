@@ -7,19 +7,22 @@ import org.joda.time._
 /**
  * Pure, in-memory storage of data with no backing store. Note that it may not perform well
  * as the collection grows large.
+ * This is largely used only for testing. The MongoDBDataStore provides the features we really
+ * need for the "production" app.
  */
-class InMemoryDataStore[Record <: RecordWithTimestamp](val name: String) 
-    extends DataStore[Record] with Logging {
+class InMemoryDataStore(val name: String) extends DataStore with Logging {
 
-  var store = SortedMap[Long,Record]()
+  implicit val dateTimeOrdering = new scala.math.Ordering[DateTime] {
+    def compare(dt1: DateTime, dt2: DateTime) = dt1 compareTo dt2
+  }
   
-  def add(item: Record): Unit = store += item.timestamp -> item
+  var store = SortedMap[DateTime, JSONRecord]()
+  
+  def add(item: JSONRecord): Unit = store += Pair(item.timestamp, item)
     
-  // def map[T](f: Record => T) = store map f
-  
   def getAll() = store map {p => p._2}
   
-  def range(from: Long, until: Long, maxNum: Int): Iterable[Record] = 
+  def range(from: DateTime, until: DateTime, maxNum: Int): Iterable[JSONRecord] = 
     store.range(from, until).map(p => p._2).take(maxNum).toIterable
   
   def size: Long = store.size

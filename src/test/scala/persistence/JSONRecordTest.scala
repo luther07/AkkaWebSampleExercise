@@ -9,7 +9,8 @@ import net.liftweb.json.JsonAST._
 
 class JSONRecordTest extends FunSuite with ShouldMatchers with BeforeAndAfterEach {
   
-  val now     = (new DateTime).getMillis
+  val nowDT   = new DateTime
+  val now     = nowDT.getMillis
   val data    = List(List(1L, 1.1), List(2L, 2.2))
   val jdata   = new java.util.ArrayList[java.util.ArrayList[AnyVal]]
   val jdata0  = new java.util.ArrayList[AnyVal]
@@ -26,17 +27,48 @@ class JSONRecordTest extends FunSuite with ShouldMatchers with BeforeAndAfterEac
   jmap.put("timestamp", BigInt(now))
   jmap.put("data", jdata)
 
-  val recordJSON = 
-      JSONRecord(("timestamp" -> BigInt(now)) ~ 
-      ("data" -> JArray(List(JArray(List(JInt(1L),JDouble(1.1))), JArray(List(JInt(2L),JDouble(2.2)))))))
-  val recordMap = JSONRecord(map)
-  
+  val recordJSONData = 
+    ("data" -> JArray(List(JArray(List(JInt(1L),JDouble(1.1))), JArray(List(JInt(2L),JDouble(2.2))))))
+  val recordJSON = JSONRecord(("timestamp" -> BigInt(now)) ~ recordJSONData)
+  val recordMap = JSONRecord(map)  
   val jRecordJSON = JSONRecord(jmap)
-  
-  var dataStore: InMemoryDataStore[JSONRecord] = _
+  var dataStore: InMemoryDataStore = _
 
   override def beforeEach = {
-    dataStore = new InMemoryDataStore[JSONRecord]("testColl_testDb")
+    dataStore = new InMemoryDataStore("testColl_testDb")
+  }
+  override def afterEach = {
+    JSONRecord.timestampKey = JSONRecord.defaultTimestampKey  // reset
+  }
+  
+  
+  test ("Attempting to create a JSONRecord with a timestamp field throws an exception") {
+    intercept[JSONRecord.InvalidJSONException] {
+      JSONRecord (recordJSONData)
+    }
+  }
+  
+  test ("Attempting to create a JSONRecord with a timestamp field that isn't a Long or String throws an exception") {
+    intercept[JSONRecord.UnsupportedTimestampTypeException] {
+      JSONRecord (("timestamp" -> false) ~ recordJSONData )
+    }
+  }
+  
+  test ("Attempting to create a JSONRecord with an invalid timestamp string throws an exception") {
+    intercept[JSONRecord.InvalidJSONException] {
+      JSONRecord (("timestamp" -> "invalid") ~ recordJSONData )
+    }
+  }
+  
+  test ("The name of the timestamp key can be changed globally by setting JSONRecord.timestampKey") {
+    JSONRecord.timestampKey = "foobar"
+    val jr = JSONRecord (("foobar" -> BigInt(now)) ~ recordJSONData ) // no exception thrown and...
+    jr.timestamp should equal (nowDT)
+  }
+  
+  test ("The name of the timestamp key defaults to 'timestamp'") {
+    val jr = JSONRecord (("timestamp" -> BigInt(now)) ~ recordJSONData )
+    jr.timestamp should equal (nowDT)
   }
   
   test ("JSONRecords written to a data store and retrieved have valid timestamps") {
@@ -62,7 +94,7 @@ class JSONRecordTest extends FunSuite with ShouldMatchers with BeforeAndAfterEac
     val resultsData = (results(0).json \ "data").values
     val expectedData = Pair("data", data)
     resultsData should equal(expectedData)
-    // TODO: Should not return flosts for 1 elements in pairs in the data array!
+    // TODO: Should not return floats for the 1st elements in the pairs in the data array!
     (results(0).json \ "data").toJSONString should equal("\"data\":[[1.0,1.1],[2.0,2.2]]")
   }
   

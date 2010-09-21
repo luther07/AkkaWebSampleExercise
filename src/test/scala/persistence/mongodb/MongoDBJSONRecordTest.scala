@@ -18,10 +18,10 @@ class MongoDBJSONRecordTest extends FunSuite with ShouldMatchers with BeforeAndA
       ("data" -> JArray(List(JArray(List(JInt(1L),JDouble(1.1))), JArray(List(JInt(2L),JDouble(2.2)))))))
   val recordMap = JSONRecord(map)
   
-  var dataStore: InMemoryDataStore[JSONRecord] = _
+  var dataStore: InMemoryDataStore = _
 
   override def beforeEach = {
-    dataStore = new InMemoryDataStore[JSONRecord]("testColl_testDb")
+    dataStore = new InMemoryDataStore("testColl_testDb")
   }
   
   test ("JSONRecords written to a data store and retrieved have valid timestamps") {
@@ -47,7 +47,7 @@ class MongoDBJSONRecordTest extends FunSuite with ShouldMatchers with BeforeAndA
     val resultsData = (results(0).json \ "data").values
     val expectedData = Pair("data", data)
     resultsData should equal(expectedData)
-    // TODO: Should not return flosts for 1 elements in pairs in the data array!
+    // TODO: Should not return floats for the 1st elements in the pairs in the data array!
     (results(0).json \ "data").toJSONString should equal("\"data\":[[1.0,1.1],[2.0,2.2]]")
   }
   
