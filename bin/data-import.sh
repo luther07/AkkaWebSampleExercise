@@ -8,7 +8,7 @@ mongo < "$dir/data-import-prep.js"    # Create the collections in mongo
 scala -classpath "lib/joda-time-1.6.jar" "$dir/data-import-transform.scala"  # Munge the YAML files into JSON files we'll import
 
 # Import the munged data. Note that it is in files in the datatmp directory.
-for n in {A..Z}
+for n in {A..E}
 do
   prefix="$dir/../datatmp/stocks_yahoo_NYSE"
   file1="${prefix}_${n}_prices.json"
@@ -27,7 +27,7 @@ mongo < "$dir/data-import-finish.js"  # Final steps, e.g., indexing the collecti
 echo "Test queries:"
 mongo <<EOF
 use stocks_yahoo_NYSE
-db.Z_prices.findOne()
-db.Z_dividends.findOne()
+db.E_prices.findOne()
+db.E_dividends.findOne()
 EOF
 echo "Finished. Delete the datetmp directory."

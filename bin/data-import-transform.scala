@@ -1,6 +1,5 @@
-import java.io._
-import org.joda.time._
-
+import java.io._;
+//import org.joda.time._;
 /** 
  * Assumes you're running this script from the project root directory:
  *   scala bin/data-import-transform.scala
@@ -12,7 +11,7 @@ val dividendsRE = """^\s*(\{\s*"date"[^}]+\}),?\s*$""".r
 (new File("datatmp")).mkdir
 val prefix = "stocks_yahoo_NYSE_"
 
-for (c <- 'A' to 'Z') {
+for (c <- 'A' to 'E') {
   // Ugly Java for file I/O...
   val inputFileName = "data/stocks_yahoo_NYSE-yaml/" + prefix + c + ".yaml"
   println("Processing: data/stocks_yahoo_NYSE-yaml/" + prefix + c + ".yaml")
