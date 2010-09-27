@@ -59,6 +59,10 @@ class RestfulDataPublisher extends Logging {
         log.info("ping result: "+result)
         result
 
+	  case "list_stocks" =>
+		log.debug("Requesting a list of all stocks")
+        getAllInstruments(instruments)
+		
       case "list_instruments" =>
         log.debug("Requesting a list of all instruments")
         getAllInstruments(instruments)
@@ -97,9 +101,9 @@ class RestfulDataPublisher extends Logging {
     try {
       // Hack! Just grab the first and last letter.
 			val symbolRange = instruments.trim match {
-        case "" => 'A' to 'Z'
+        case "" => 'A' to 'Z' //default
         case s  => s.length match {
-          case 1 => s.charAt(0).toUpper to 'Z'
+          case 1 => 'A' to s.charAt(0).toUpper //1 character; use as end
           case n => s.charAt(0).toUpper to s.charAt(n-1).toUpper
         }
       }

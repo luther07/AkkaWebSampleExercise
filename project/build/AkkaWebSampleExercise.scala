@@ -60,11 +60,9 @@ class AkkaWebSampleExercise(info: ProjectInfo) extends DefaultWebProject(info)  
   lazy val AKKA_VERSION          = "0.10"
   lazy val ATMO_VERSION          = "0.6.1"
   lazy val CAMEL_VERSION         = "2.4.0"
-  lazy val JERSEY_VERSION        = "1.2"
   lazy val LIFT_VERSION          = "2.1-M1"
   lazy val MULTIVERSE_VERSION    = "0.6"
   lazy val SCALATEST_VERSION     = "1.2-for-scala-2.8.0.final-SNAPSHOT"
-
   lazy val ECLIPSE_JETTY_VERSION = "7.1.6.v20100715" //  "7.0.2.v20100331"
   lazy val MORTBAY_JETTY_VERSION = "6.1.22"
 
@@ -90,11 +88,6 @@ class AkkaWebSampleExercise(info: ProjectInfo) extends DefaultWebProject(info)  
 
     lazy val mongoScalaDriver = "com.osinka" % "mongo-scala-driver_2.8.0" % "0.8.3" % "compile"
 
-    lazy val jersey         = "com.sun.jersey"          % "jersey-core"   % JERSEY_VERSION % "compile"
-    lazy val jersey_json    = "com.sun.jersey"          % "jersey-json"   % JERSEY_VERSION % "compile"
-    lazy val jersey_server  = "com.sun.jersey"          % "jersey-server" % JERSEY_VERSION % "compile"
-    lazy val jersey_contrib = "com.sun.jersey.contribs" % "jersey-scala"  % JERSEY_VERSION % "compile"
-
     // Test
 
     // lazy val jettyServer    = "org.eclipse.jetty"      % "jetty-distribution"  % ECLIPSE_JETTY_VERSION  % "test"
@@ -114,8 +107,7 @@ class AkkaWebSampleExercise(info: ProjectInfo) extends DefaultWebProject(info)  
     configgy, 
     liftJSON, 
     mongo, mongoScalaDriver,
-    jettyBase, //jettyServer, jettyWebApp, jettyServlets,
-    jersey, jersey_json, jersey_server, jersey_contrib,
+    jettyBase, // jettyServer, jettyWebApp, jettyServlets,
     scalatest, junit)
 
 	/* Embedded Jetty web server */

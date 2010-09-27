@@ -85,7 +85,7 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
       case None => 
         Pair("warning", "Nothing returned for instrument list in range "+range)
       case Some(result) => 
-					 log.info("IS: result = "+result)
+					 //log.info("IS: result = "+result)
 					 result
     }
   }
@@ -118,6 +118,17 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
       case x => x
     }
     val fullResults = toJValue(Map("criteria" -> toNiceFormat(instruments, statistics, start, end), "results" -> results))
+    fullResults
+  }
+  
+    // Public visibility, for testing purposes.
+  def formatInstrumentListResults(
+      result: JValue, range: scala.collection.immutable.NumericRange[Char]): JValue = {
+    val results = result match {
+      case JNothing => toJValue(Nil)  // Use an empty array as the result
+      case x => x
+    }
+    val fullResults = toJValue(Map("range" -> range.toString, "results" -> results))
     fullResults
   }
   
