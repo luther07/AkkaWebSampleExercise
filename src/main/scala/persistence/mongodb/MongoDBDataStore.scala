@@ -10,6 +10,7 @@ import net.liftweb.json.JsonAST._
 import net.liftweb.json.JsonDSL._
 import com.osinka.mongodb._
 import com.mongodb.{BasicDBObject, DBCursor, Mongo, MongoException}
+// import com.novus.casbah.mongodb.Imports._
 
 /**
  * MongoDB-based storage of data. 
@@ -53,9 +54,11 @@ class MongoDBDataStore(
   }
   
   def range(from: DateTime, to: DateTime, maxNum: Int): Iterable[JSONRecord] = try {
-    val query = new BasicDBObject()
-    query.put(JSONRecord.timestampKey, 
-              new BasicDBObject("$gte", dateTimeToAnyValue(from)).append("$lte", dateTimeToAnyValue(to)))
+    val qb = new com.mongodb.QueryBuilder
+    qb.and(JSONRecord.timestampKey).
+      greaterThanEquals(dateTimeToAnyValue(from)).
+      lessThanEquals(dateTimeToAnyValue(to))
+    val query = qb.get
     val cursor = collection.find(query).sort(new BasicDBObject(JSONRecord.timestampKey, 1))
     log.info("db name: query, cursor.count, maxNum: "+collection.getFullName+", "+query+", "+cursor.count+", "+maxNum)
     if (cursor.count > maxNum)
@@ -68,10 +71,8 @@ class MongoDBDataStore(
       throw th
   }
   
-  // Hack!
-  def getInstrumentList(prefix: String): Iterable[JSONRecord] = try {
-	  // TODO: We hard-code the name of the thing we want, the "stock_symbol". Should be abstracted...
-    val list = collection.distinct("stock_symbol")
+  def getInstrumentList(prefix: String, keyForInstrumentSymbols: String): Iterable[JSONRecord] = try {
+    val list = collection.distinct(keyForInstrumentSymbols)
     val buff = new scala.collection.mutable.ArrayBuffer[String]()
     var iter = list.iterator
     while (iter.hasNext) {

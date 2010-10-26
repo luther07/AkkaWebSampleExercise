@@ -19,7 +19,8 @@ import net.lag.logging.Level
 sealed trait InstrumentCalculationMessages
 
 case class CalculateStatistics(criteria: CriteriaMap) extends InstrumentCalculationMessages
-case class GetInstrumentList(range: scala.collection.immutable.NumericRange[Char]) extends InstrumentCalculationMessages
+case class GetInstrumentList(range: scala.collection.immutable.NumericRange[Char], keyForInstrumentSymbols: String) 
+  extends InstrumentCalculationMessages
       
 /**
  * InstrumentAnalysisServer is a worker that calculates (or simply fetches...) statistics for financial instruments.
@@ -44,7 +45,7 @@ class InstrumentAnalysisServer(val service: String, dataStorageServer: ActorRef)
 
   def defaultHandler: PartialFunction[Any, Unit] = {
     case CalculateStatistics(criteria) => self.reply(helper.calculateStatistics(criteria))
-    case GetInstrumentList(range) => self.reply(helper.getInstrumentList(range))
+    case GetInstrumentList(range, keyForInstrumentSymbols) => self.reply(helper.getInstrumentList(range, keyForInstrumentSymbols))
   }
   
   override protected def subordinatesToPing: List[ActorRef] = List(dataStorageServer)
@@ -72,7 +73,7 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
   protected def fetchPrices(
         instruments: List[Instrument], statistics: List[InstrumentStatistic], 
         start: DateTime, end: DateTime): JValue = {
-    (dataStorageServer !! Get(("start" -> start) ~ ("end" -> end))) match {
+    (dataStorageServer !! Get(Map("start" -> start, "end" -> end))) match {
       case None => 
         Pair("warning", "Nothing returned for query (start, end) = (" + start + ", " + end + ")")
       case Some(result) => 
@@ -80,8 +81,9 @@ class InstrumentAnalysisServerHelper(dataStorageServer: => ActorRef) {
     }
   }
   
-  def getInstrumentList(range: scala.collection.immutable.NumericRange[Char]): JValue = {
-    (dataStorageServer !! Get(Pair("instrument_list", range.toList.head.toString))) match {
+  def getInstrumentList(
+      range: scala.collection.immutable.NumericRange[Char], keyForInstrumentSymbols: String): JValue = {
+    (dataStorageServer !! Get(Map("instrument_list" -> range.toList.head.toString, "instrument_symbols_key" -> keyForInstrumentSymbols))) match {
       case None => 
         Pair("warning", "Nothing returned for instrument list in range "+range)
       case Some(result) => 

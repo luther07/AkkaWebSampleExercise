@@ -1,0 +1,101 @@
+env java -Xmx1024M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m -jar ./misc/sbt-launch-0.7.4.jar jetty-run
+[info] Building project AkkaWebSampleExercise 0.3.0 against Scala 2.8.0
+[info]    using AkkaWebSampleExercise with sbt 0.7.4 and Scala 2.7.7
+[info] 
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info] 
+[info] == compile ==
+[info]   Source analysis: 0 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Nothing to compile.
+[info]   Post-analysis: 197 classes.
+[info] == compile ==
+[info] 
+[info] == prepare-webapp ==
+[info] == prepare-webapp ==
+[info] 
+[info] == jetty-run ==
+[info] jetty-6.1.22
+[info] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
+[INFO] [2010-09-23 18:45:26,938] [main] s.s.a.c.Config$: Config loaded from the application classpath.
+[INFO] [2010-09-23 18:45:26,946] [main] s.s.a.s.AkkaLoader: ==================================================
+[INFO] [2010-09-23 18:45:26,947] [main] s.s.a.s.AkkaLoader:                        t
+[INFO] [2010-09-23 18:45:26,948] [main] s.s.a.s.AkkaLoader:              t       t t
+[INFO] [2010-09-23 18:45:26,950] [main] s.s.a.s.AkkaLoader:             t       t tt   t
+[INFO] [2010-09-23 18:45:26,951] [main] s.s.a.s.AkkaLoader:         tt  t   t  tt       t
+[INFO] [2010-09-23 18:45:26,952] [main] s.s.a.s.AkkaLoader:        t ttttttt  t      ttt t
+[INFO] [2010-09-23 18:45:26,954] [main] s.s.a.s.AkkaLoader:       t   tt ttt t       ttt  t
+[INFO] [2010-09-23 18:45:26,955] [main] s.s.a.s.AkkaLoader:      t     t ttt    t    ttt   t      t
+[INFO] [2010-09-23 18:45:26,956] [main] s.s.a.s.AkkaLoader:     tt    t  ttt         ttt    ttt    t
+[INFO] [2010-09-23 18:45:26,957] [main] s.s.a.s.AkkaLoader:    t     t   ttt         ttt     t tt  t
+[INFO] [2010-09-23 18:45:26,959] [main] s.s.a.s.AkkaLoader:    t         ttt         ttt      t     t
+[INFO] [2010-09-23 18:45:26,960] [main] s.s.a.s.AkkaLoader:  tt          ttt         ttt              t
+[INFO] [2010-09-23 18:45:26,961] [main] s.s.a.s.AkkaLoader:              ttt         ttt
+[INFO] [2010-09-23 18:45:26,963] [main] s.s.a.s.AkkaLoader:    tttttttt  ttt    ttt  ttt    ttt  tttttttt
+[INFO] [2010-09-23 18:45:26,964] [main] s.s.a.s.AkkaLoader:   ttt    tt  ttt    ttt  ttt    ttt ttt    ttt
+[INFO] [2010-09-23 18:45:26,965] [main] s.s.a.s.AkkaLoader:   ttt    ttt ttt    ttt  ttt    ttt ttt    ttt
+[INFO] [2010-09-23 18:45:26,966] [main] s.s.a.s.AkkaLoader:   ttt    ttt ttt    ttt  ttt    tt  ttt    ttt
+[INFO] [2010-09-23 18:45:26,968] [main] s.s.a.s.AkkaLoader:         tttt ttttttttt   tttttttt         tttt
+[INFO] [2010-09-23 18:45:26,969] [main] s.s.a.s.AkkaLoader:    ttttttttt ttt    ttt  ttt   ttt   ttttttttt
+[INFO] [2010-09-23 18:45:26,970] [main] s.s.a.s.AkkaLoader:   ttt    ttt ttt    ttt  ttt    ttt ttt    ttt
+[INFO] [2010-09-23 18:45:26,972] [main] s.s.a.s.AkkaLoader:   ttt    ttt ttt    ttt  ttt    ttt ttt    ttt
+[INFO] [2010-09-23 18:45:26,973] [main] s.s.a.s.AkkaLoader:   ttt    tt  ttt    ttt  ttt    ttt ttt    ttt
+[INFO] [2010-09-23 18:45:26,974] [main] s.s.a.s.AkkaLoader:    tttttttt  ttt    ttt  ttt    ttt  tttttttt
+[INFO] [2010-09-23 18:45:26,976] [main] s.s.a.s.AkkaLoader: ==================================================
+[INFO] [2010-09-23 18:45:26,987] [main] s.s.a.s.AkkaLoader:             Running version 0.10
+[INFO] [2010-09-23 18:45:26,989] [main] s.s.a.s.AkkaLoader: ==================================================
+[INFO] [2010-09-23 18:45:26,990] [main] s.s.a.s.AkkaLoader: Starting Akka...
+[INFO] [2010-09-23 18:45:26,995] [main] s.s.a.r.Cluster$: Starting up Cluster Service...
+[DEBUG] [2010-09-23 18:45:27,055] [main] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-23 18:45:27,173] [main] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-23 18:45:27,211] [main] s.s.a.a.Actor$: Linking actor [Actor[se.scalablesolutions.akka.remote.JGroupsClusterActor:1285637848565]] to actor [Actor[se.scalablesolutions.akka.actor.SupervisorActor:1285637848706]]
+[INFO] [2010-09-23 18:45:27,227] [main] o.c.a.s.Initializer$$anon$1: Initializing Remote Actors Service...
+[DEBUG] [2010-09-23 18:45:27,229] [akka:event-driven:dispatcher:global-1] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-1
+[INFO] [2010-09-23 18:45:27,232] [main] o.c.a.s.Initializer$$anon$1: Remote Actors Service initialized
+[INFO] [2010-09-23 18:45:27,235] [main] o.c.a.s.Initializer$$anon$1: Creating /deploy class-loader
+[INFO] [2010-09-23 18:45:27,248] [main] o.c.a.s.Initializer$$anon$1: Loading boot class [org.chicagoscala.awse.boot.BootAWSE]
+[INFO] [2010-09-23 18:45:27,314] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: Booting JGroups-based cluster
+[DEBUG] [2010-09-23 18:45:27,371] [main] s.s.a.a.Actor$: Linking actor [Actor[org.chicagoscala.awse.server.finance.InstrumentAnalysisServerSupervisor:1285637848868]] to actor [Actor[se.scalablesolutions.akka.actor.SupervisorActor:1285637848906]]
+[INFO] [2010-09-23 18:45:27,384] [main] s.s.a.s.AkkaLoader: Akka started successfully
+[INFO] [2010-09-23 18:45:27,491] [Akka Remote Service] s.s.a.r.RemoteNode$: Starting remote server at [localhost:9999]
+[info] Started SelectChannelConnector@0.0.0.0:8080
+[info] == jetty-run ==
+[success] Successful.
+[info] 
+[info] Total time: 6 s, completed Sep 23, 2010 6:45:27 PM
+[info] 
+[info] Total session time: 7 s, completed Sep 23, 2010 6:45:27 PM
+[success] Build completed successfully.
+[INFO] [2010-09-23 18:45:27,542] [main] s.s.a.s.AkkaLoader: Shutting down Akka...
+[INFO] [2010-09-23 18:45:27,546] [main] o.c.a.s.Initializer$$anon$1: Shutting down Remote Actors Service
+[DEBUG] [2010-09-23 18:45:27,633] [akka:event-driven:dispatcher:global-2] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-2
+[DEBUG] [2010-09-23 18:45:27,655] [akka:event-driven:dispatcher:global-3] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-3
+[INFO] [2010-09-23 18:45:27,655] [main] o.c.a.s.Initializer$$anon$1: Shutting down Cluster
+[INFO] [2010-09-23 18:45:27,656] [main] s.s.a.r.Cluster$: Shutting down Cluster Service...
+
+-------------------------------------------------------------------
+GMS: address=mjohns07-PC-56729, cluster=default, physical address=0.0.0.0:49273
+-------------------------------------------------------------------
+[DEBUG] [2010-09-23 18:45:30,472] [akka:event-driven:dispatcher:global-4] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-4
+[DEBUG] [2010-09-23 18:45:30,493] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: RegisterLocalNode: RemoteAddress(localhost,9999)
+[DEBUG] [2010-09-23 18:45:30,495] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: DeregisterLocalNode: RemoteAddress(localhost,9999)
+[DEBUG] [2010-09-23 18:45:30,504] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: Updating view
+[DEBUG] [2010-09-23 18:45:30,505] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: Other memebers: [Set()]
+[DEBUG] [2010-09-23 18:45:30,507] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: Zombies: [Set()]
+[DEBUG] [2010-09-23 18:45:30,508] [akka:event-driven:dispatcher:global-1] s.s.a.r.JGroupsClusterActor: Unknowns: [Set()]
+[INFO] [2010-09-23 18:45:30,511] [main] s.s.a.r.JGroupsClusterActor: Shutting down se.scalablesolutions.akka.remote.JGroupsClusterActor@1098594
+[DEBUG] [2010-09-23 18:45:30,587] [main] s.s.a.r.RemoteNode$: Unregistering server side remote actor [se.scalablesolutions.akka.remote.JGroupsClusterActor] with id [se.scalablesolutions.akka.remote.JGroupsClusterActor]
+[DEBUG] [2010-09-23 18:45:30,588] [main] s.s.a.r.RemoteNode$: Unregistering server side remote actor [se.scalablesolutions.akka.actor.SupervisorActor] with id [se.scalablesolutions.akka.actor.SupervisorActor]
+[INFO] [2010-09-23 18:45:30,589] [main] o.c.a.s.Initializer$$anon$1: Remote Actors Service has been shut down
+[INFO] [2010-09-23 18:45:30,590] [main] s.s.a.a.ActorRegistry$: Shutting down all actors in the system...
+[DEBUG] [2010-09-23 18:45:30,592] [main] s.s.a.r.RemoteNode$: Unregistering server side remote actor [org.chicagoscala.awse.server.finance.InstrumentAnalysisServerSupervisor] with id [org.chicagoscala.awse.server.finance.InstrumentAnalysisServerSupervisor]
+[DEBUG] [2010-09-23 18:45:30,593] [main] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-23 18:45:30,594] [main] s.s.a.r.RemoteNode$: Unregistering server side remote actor [se.scalablesolutions.akka.actor.SupervisorActor] with id [se.scalablesolutions.akka.actor.SupervisorActor]
+[DEBUG] [2010-09-23 18:45:30,594] [akka:event-driven:dispatcher:global-3] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-3
+[DEBUG] [2010-09-23 18:45:30,595] [akka:event-driven:dispatcher:global-2] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-2
+[INFO] [2010-09-23 18:45:30,595] [main] s.s.a.a.ActorRegistry$: All actors have been shut down and unregistered from ActorRegistry
+[INFO] [2010-09-23 18:45:30,597] [main] s.s.a.s.AkkaLoader: Akka succesfully shut down
+[DEBUG] [2010-09-23 18:45:30,598] [akka:event-driven:dispatcher:global-1] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-1
+[DEBUG] [2010-09-23 18:45:30,600] [akka:event-driven:dispatcher:global-4] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-4

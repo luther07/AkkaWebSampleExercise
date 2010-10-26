@@ -16,6 +16,9 @@ import org.joda.time._
 case class CouldNotFindDateTime(key: String, json: JValue) extends RuntimeException(
   "Could not find expected date time field for key "+key+" in JSON "+compact(render(json)))
   
+case class InvalidCriteria(message: String, criteria: JValue) extends RuntimeException(
+  "The specified criteria was not valid. "+message+". criteria: "+compact(render(criteria)))
+
 /**
  * DataStorageServer manages access to time-oriented data, stored as JSON.
  * TODO: Currently, the query capabilities are limited to date-time range queries.
@@ -49,15 +52,26 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
       self.reply (toJValue(Pair("error", message)))
   }
 
-  protected[persistence] def getData(criteria: JValue): JValue = {
-    (criteria \ "instrument_list") match {
-      case JField(key, JString(value)) => getInstrumentList(value)
-      case _ => getDataForRange(criteria)
-    } 
+  // TODO: a little messy...
+  protected[persistence] def getData(criteria: Map[String, Any]): JValue = criteria.get("instrument_list") match {
+    case Some(x) => x match {
+      case prefix: String => criteria.get("instrument_symbols_key") match {
+        case Some(y) => y match {
+          case keyForInstruments: String => getInstrumentList(prefix, keyForInstruments)
+          case _ => throw new InvalidCriteria(
+            "Map contained key-value pairs for keys 'instrument_list' and 'instrument_symbols_key', but the value for 'instrument_symbols_key' was not a string: value = ", y)
+        }          
+        case _ => throw new InvalidCriteria(
+          "Map contained a key-value pair for key 'instrument_list', but not for key 'instrument_symbols_key': criteria = ", criteria)
+      }
+      case _ => throw new InvalidCriteria(
+        "Map contained a key-value pair for key 'instrument_list', but the value was not a string: value = ", x)
+    }
+    case _ => getDataForRange(criteria)    
   }
   
   // TODO: Support other query criteria besides time ranges.
-  protected[persistence] def getDataForRange(criteria: JValue): JValue = {
+  protected[persistence] def getDataForRange(criteria: Map[String, Any]): JValue = {
     log.debug(actorName + ": Starting getDataForRange:")
     val start: DateTime = extractTime(criteria, "start", new DateTime(0))
     val end: DateTime   = extractTime(criteria, "end",   new DateTime)
@@ -78,6 +92,7 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
   }
 
   // Hack!
+<<<<<<< HEAD
   protected[persistence] def getInstrumentList(prefix: String): JValue = dataStore match {
 	case mongo: MongoDBDataStore => 
 		val data = for {
@@ -86,6 +101,21 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
 		toJSON(data toList)
 	case _ => throw new RuntimeException("Can't get the instrument list from datastore "+dataStore)
 	}
+=======
+  protected[persistence] def getInstrumentList(prefix: String, keyForInstrumentSymbols: String): JValue = {
+    log.debug(actorName + ": Starting getInstrumentList for prefix = "+prefix+" and symbol key = "+keyForInstrumentSymbols)
+    dataStore match {
+      case mongo: MongoDBDataStore => 
+        val data = for {
+					json <- mongo.getInstrumentList(prefix, keyForInstrumentSymbols)
+        } yield json
+        val result = toJSON(data toList)
+        log.info("DataStorageServer.getInstrumentList returning: "+result)
+        result
+      case _ => throw new RuntimeException("Can't get the instrument list from datastore "+dataStore)
+    }
+  }
+>>>>>>> deanwampler-origin/exercise4_start
   
   protected[persistence] def putData(jsonRecord: JSONRecord) = {
     log.debug(actorName + " PUT: storing JSON: " + jsonShortStr(jsonRecord.toString))
@@ -100,11 +130,12 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
     }
   }
 
-  protected def extractTime(json: JValue, key: String, default: => DateTime): DateTime = (json \ key) match {
-    case JField(key, value) => value match {
-      case JInt(millis) => new DateTime(millis.toLong)
-      case JString(s) => new DateTime(s)
-      case _ => default
+  protected def extractTime(criteria: Map[String, Any], key: String, default: => DateTime): DateTime = criteria.get(key) match {
+    case Some(value) => value match {
+      case dt:     DateTime => dt
+      case millis: Long     => new DateTime(millis)
+      case s:      String   => new DateTime(s)
+      case _                => default
     }
     case _ => default
   } 

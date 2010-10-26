@@ -1,0 +1,753 @@
+env java -Xmx1024M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m -jar ./misc/sbt-launch-0.7.4.jar test
+[info] Building project AkkaWebSampleExercise 0.3.0 against Scala 2.8.0
+[info]    using AkkaWebSampleExercise with sbt 0.7.4 and Scala 2.7.7
+[info] 
+[info] == compile ==
+[info]   Source analysis: 0 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Nothing to compile.
+[info]   Post-analysis: 197 classes.
+[info] == compile ==
+[info] 
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info] 
+[info] == test-compile ==
+[info]   Source analysis: 0 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling test sources...
+[info] Nothing to compile.
+[info]   Post-analysis: 203 classes.
+[info] == test-compile ==
+[info] 
+[info] == copy-test-resources ==
+[info] == copy-test-resources ==
+[info] 
+[info] == test-start ==
+[info] == test-start ==
+[info] 
+[info] == org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest ==
+[INFO] [2010-09-27 18:23:46,775] [Thread-6] s.s.a.c.Config$: Config loaded from the application classpath.
+[info] Test Starting: A new DataStore should have no elements
+[INFO] [2010-09-27 18:23:50,008] [Thread-6] o.c.a.p.m.MongoDBDataStore: MongoException thrown, probably because we called createCollection on a collection that exists, in which case this is harmless (and contrary to the documentation...): com.mongodb.MongoException$Network: can't call something
+[error] Test Failed: A new DataStore should have no elements
+com.mongodb.MongoException$Network: can't call something
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:189)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBApiLayer$MyCollection.__find(DBApiLayer.java:277)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:366)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:355)
+	at com.mongodb.DB.command(DB.java:135)
+	at com.mongodb.DBCollection.getCount(DBCollection.java:513)
+	at com.mongodb.DBCollection.getCount(DBCollection.java:480)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStore.size(MongoDBDataStore.scala:48)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase$$anonfun$1.apply$mcV$sp(DataStoreTestBase.scala:19)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase$$anonfun$1.apply(DataStoreTestBase.scala:19)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase$$anonfun$1.apply(DataStoreTestBase.scala:19)
+	at org.scalatest.FunSuite$$anon$2.apply(FunSuite.scala:1158)
+	at org.scalatest.Suite$class.withFixture(Suite.scala:1509)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.withFixture(DataStoreTestBase.scala:8)
+	at org.scalatest.FunSuite$class.runTest(FunSuite.scala:1155)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.org$scalatest$BeforeAndAfterEach$$super$runTest(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterEach$class.runTest(BeforeAndAfterEach.scala:167)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.runTest(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1264)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1255)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:61)
+	at scala.collection.immutable.List.foreach(List.scala:45)
+	at org.scalatest.FunSuite$class.runTests(FunSuite.scala:1255)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.runTests(DataStoreTestBase.scala:8)
+	at org.scalatest.Suite$class.run(Suite.scala:1804)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.org$scalatest$FunSuite$$super$run(DataStoreTestBase.scala:8)
+	at org.scalatest.FunSuite$class.run(FunSuite.scala:1304)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.org$scalatest$BeforeAndAfterAll$$super$run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:213)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.tools.ScalaTestFramework$ScalaTestRunner.run(ScalaTestFramework.scala:40)
+	at sbt.TestRunner.run(TestFramework.scala:52)
+	at sbt.TestRunner.runTest$1(TestFramework.scala:66)
+	at sbt.TestRunner.run(TestFramework.scala:75)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11.runTest$2(TestFramework.scala:192)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.NamedTestTask.run(TestFramework.scala:91)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.TaskManager$Task.invoke(TaskManager.scala:62)
+	at sbt.impl.RunTask.doRun$1(RunTask.scala:77)
+	at sbt.impl.RunTask.runTask(RunTask.scala:85)
+	at sbt.impl.RunTask.sbt$impl$RunTask$$runIfNotRoot(RunTask.scala:60)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Control$.trapUnit(Control.scala:19)
+	at sbt.Distributor$Run$Worker.run(ParallelRunner.scala:131)
+Caused by: java.io.IOException: couldn't connect to [/127.0.0.1:27017] bc:java.net.ConnectException: Connection refused: connect
+	at com.mongodb.DBPort._open(DBPort.java:120)
+	at com.mongodb.DBPort.go(DBPort.java:69)
+	at com.mongodb.DBPort.call(DBPort.java:57)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:181)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBApiLayer$MyCollection.__find(DBApiLayer.java:277)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:366)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:355)
+	at com.mongodb.DB.command(DB.java:135)
+	at com.mongodb.DBCollection.getCount(DBCollection.java:513)
+	at com.mongodb.DBCollection.getCount(DBCollection.java:480)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStore.size(MongoDBDataStore.scala:48)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase$$anonfun$1.apply$mcV$sp(DataStoreTestBase.scala:19)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase$$anonfun$1.apply(DataStoreTestBase.scala:19)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase$$anonfun$1.apply(DataStoreTestBase.scala:19)
+	at org.scalatest.FunSuite$$anon$2.apply(FunSuite.scala:1158)
+	at org.scalatest.Suite$class.withFixture(Suite.scala:1509)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.withFixture(DataStoreTestBase.scala:8)
+	at org.scalatest.FunSuite$class.runTest(FunSuite.scala:1155)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.org$scalatest$BeforeAndAfterEach$$super$runTest(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterEach$class.runTest(BeforeAndAfterEach.scala:167)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.runTest(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1264)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1255)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:61)
+	at scala.collection.immutable.List.foreach(List.scala:45)
+	at org.scalatest.FunSuite$class.runTests(FunSuite.scala:1255)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.runTests(DataStoreTestBase.scala:8)
+	at org.scalatest.Suite$class.run(Suite.scala:1804)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.org$scalatest$FunSuite$$super$run(DataStoreTestBase.scala:8)
+	at org.scalatest.FunSuite$class.run(FunSuite.scala:1304)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.org$scalatest$BeforeAndAfterAll$$super$run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:213)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.tools.ScalaTestFramework$ScalaTestRunner.run(ScalaTestFramework.scala:40)
+	at sbt.TestRunner.run(TestFramework.scala:52)
+	at sbt.TestRunner.runTest$1(TestFramework.scala:66)
+	at sbt.TestRunner.run(TestFramework.scala:75)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11.runTest$2(TestFramework.scala:192)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.NamedTestTask.run(TestFramework.scala:91)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.TaskManager$Task.invoke(TaskManager.scala:62)
+	at sbt.impl.RunTask.doRun$1(RunTask.scala:77)
+	at sbt.impl.RunTask.runTask(RunTask.scala:85)
+	at sbt.impl.RunTask.sbt$impl$RunTask$$runIfNotRoot(RunTask.scala:60)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Control$.trapUnit(Control.scala:19)
+	at sbt.Distributor$Run$Worker.run(ParallelRunner.scala:131)
+com.mongodb.MongoException$Network: can't call something
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:189)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBApiLayer$MyCollection.__find(DBApiLayer.java:277)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:366)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:355)
+	at com.mongodb.DB.command(DB.java:135)
+	at com.mongodb.DBCollection.drop(DBCollection.java:457)
+	at com.osinka.mongodb.wrapper.DBCollectionWrapper$class.drop(DBCollectionWrapper.scala:47)
+	at com.osinka.mongodb.DBObjectCollection.drop(DBObjectCollection.scala:26)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.afterEach(MongoDBDataStoreTest.scala:22)
+	at org.scalatest.BeforeAndAfterEach$class.afterEach(BeforeAndAfterEach.scala:136)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.afterEach(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterEach$class.runTest(BeforeAndAfterEach.scala:174)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.runTest(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1264)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1255)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:61)
+	at scala.collection.immutable.List.foreach(List.scala:45)
+	at org.scalatest.FunSuite$class.runTests(FunSuite.scala:1255)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.runTests(DataStoreTestBase.scala:8)
+	at org.scalatest.Suite$class.run(Suite.scala:1804)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.org$scalatest$FunSuite$$super$run(DataStoreTestBase.scala:8)
+	at org.scalatest.FunSuite$class.run(FunSuite.scala:1304)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.org$scalatest$BeforeAndAfterAll$$super$run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:213)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.tools.ScalaTestFramework$ScalaTestRunner.run(ScalaTestFramework.scala:40)
+	at sbt.TestRunner.run(TestFramework.scala:52)
+	at sbt.TestRunner.runTest$1(TestFramework.scala:66)
+	at sbt.TestRunner.run(TestFramework.scala:75)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11.runTest$2(TestFramework.scala:192)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.NamedTestTask.run(TestFramework.scala:91)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.TaskManager$Task.invoke(TaskManager.scala:62)
+	at sbt.impl.RunTask.doRun$1(RunTask.scala:77)
+	at sbt.impl.RunTask.runTask(RunTask.scala:85)
+	at sbt.impl.RunTask.sbt$impl$RunTask$$runIfNotRoot(RunTask.scala:60)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Control$.trapUnit(Control.scala:19)
+	at sbt.Distributor$Run$Worker.run(ParallelRunner.scala:131)
+Caused by: java.io.IOException: couldn't connect to [/127.0.0.1:27017] bc:java.net.ConnectException: Connection refused: connect
+	at com.mongodb.DBPort._open(DBPort.java:120)
+	at com.mongodb.DBPort.go(DBPort.java:69)
+	at com.mongodb.DBPort.call(DBPort.java:57)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:181)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:187)
+	at com.mongodb.DBApiLayer$MyCollection.__find(DBApiLayer.java:277)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:366)
+	at com.mongodb.DBCollection.findOne(DBCollection.java:355)
+	at com.mongodb.DB.command(DB.java:135)
+	at com.mongodb.DBCollection.drop(DBCollection.java:457)
+	at com.osinka.mongodb.wrapper.DBCollectionWrapper$class.drop(DBCollectionWrapper.scala:47)
+	at com.osinka.mongodb.DBObjectCollection.drop(DBObjectCollection.scala:26)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.afterEach(MongoDBDataStoreTest.scala:22)
+	at org.scalatest.BeforeAndAfterEach$class.afterEach(BeforeAndAfterEach.scala:136)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.afterEach(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterEach$class.runTest(BeforeAndAfterEach.scala:174)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.runTest(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1264)
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1255)
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:61)
+	at scala.collection.immutable.List.foreach(List.scala:45)
+	at org.scalatest.FunSuite$class.runTests(FunSuite.scala:1255)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.runTests(DataStoreTestBase.scala:8)
+	at org.scalatest.Suite$class.run(Suite.scala:1804)
+	at org.chicagoscala.awse.persistence.DataStoreTestBase.org$scalatest$FunSuite$$super$run(DataStoreTestBase.scala:8)
+	at org.scalatest.FunSuite$class.run(FunSuite.scala:1304)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.org$scalatest$BeforeAndAfterAll$$super$run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.BeforeAndAfterAll$class.run(BeforeAndAfterAll.scala:213)
+	at org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest.run(MongoDBDataStoreTest.scala:13)
+	at org.scalatest.tools.ScalaTestFramework$ScalaTestRunner.run(ScalaTestFramework.scala:40)
+	at sbt.TestRunner.run(TestFramework.scala:52)
+	at sbt.TestRunner.runTest$1(TestFramework.scala:66)
+	at sbt.TestRunner.run(TestFramework.scala:75)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11.runTest$2(TestFramework.scala:192)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203)
+	at sbt.NamedTestTask.run(TestFramework.scala:91)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187)
+	at sbt.TaskManager$Task.invoke(TaskManager.scala:62)
+	at sbt.impl.RunTask.doRun$1(RunTask.scala:77)
+	at sbt.impl.RunTask.runTask(RunTask.scala:85)
+	at sbt.impl.RunTask.sbt$impl$RunTask$$runIfNotRoot(RunTask.scala:60)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131)
+	at sbt.Control$.trapUnit(Control.scala:19)
+	at sbt.Distributor$Run$Worker.run(ParallelRunner.scala:131)
+[error] Could not run test org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest: com.mongodb.MongoException$Network: can't call something
+[info] == org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest ==
+[info] 
+[info] == org.chicagoscala.awse.server.persistence.DataStorageServerTest ==
+[DEBUG] [2010-09-27 18:23:59,160] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[INFO] [2010-09-27 18:23:59,275] [Thread-8] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:23:59,282] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[info] Test Starting: Get message should return an empty JSON string if there is no data
+[DEBUG] [2010-09-27 18:23:59,330] [akka:event-driven:dispatcher:global-1] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-1
+[DEBUG] [2010-09-27 18:23:59,346] [akka:event-driven:dispatcher:global-2] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-2
+[info] Test Passed: Get message should return an empty JSON string if there is no data
+[DEBUG] [2010-09-27 18:23:59,678] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[INFO] [2010-09-27 18:23:59,679] [Thread-8] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:23:59,680] [akka:event-driven:dispatcher:global-1] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-1
+[DEBUG] [2010-09-27 18:23:59,680] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:23:59,681] [akka:event-driven:dispatcher:global-2] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-2
+[DEBUG] [2010-09-27 18:23:59,681] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[info] Test Starting: Get message should return an empty JSON string if there is data, but none matches the Get time-range criteria
+[DEBUG] [2010-09-27 18:23:59,714] [akka:event-driven:dispatcher:global-3] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-3
+[DEBUG] [2010-09-27 18:23:59,715] [akka:event-driven:dispatcher:global-4] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-4
+[DEBUG] [2010-09-27 18:23:59,730] [akka:event-driven:dispatcher:global-5] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-5
+[DEBUG] [2010-09-27 18:23:59,732] [akka:event-driven:dispatcher:global-6] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-6
+[DEBUG] [2010-09-27 18:23:59,734] [akka:event-driven:dispatcher:global-7] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-7
+[DEBUG] [2010-09-27 18:23:59,735] [akka:event-driven:dispatcher:global-8] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-8
+[DEBUG] [2010-09-27 18:23:59,740] [akka:event-driven:dispatcher:global-9] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-9
+[DEBUG] [2010-09-27 18:23:59,741] [akka:event-driven:dispatcher:global-10] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-10
+[info] Test Passed: Get message should return an empty JSON string if there is data, but none matches the Get time-range criteria
+[DEBUG] [2010-09-27 18:23:59,743] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[INFO] [2010-09-27 18:23:59,744] [Thread-8] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:23:59,744] [akka:event-driven:dispatcher:global-3] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-3
+[DEBUG] [2010-09-27 18:23:59,745] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:23:59,746] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:23:59,746] [akka:event-driven:dispatcher:global-5] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-5
+[info] Test Starting: Get message should return the one datum as a JSON string if there is one datum and it matches the Get time-range criteria
+[DEBUG] [2010-09-27 18:23:59,746] [akka:event-driven:dispatcher:global-7] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-7
+[DEBUG] [2010-09-27 18:23:59,747] [akka:event-driven:dispatcher:global-9] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-9
+[DEBUG] [2010-09-27 18:23:59,748] [akka:event-driven:dispatcher:global-10] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-10
+[DEBUG] [2010-09-27 18:23:59,747] [akka:event-driven:dispatcher:global-6] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-6
+[DEBUG] [2010-09-27 18:23:59,749] [akka:event-driven:dispatcher:global-4] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-4
+[DEBUG] [2010-09-27 18:23:59,749] [akka:event-driven:dispatcher:global-8] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-8
+[DEBUG] [2010-09-27 18:23:59,749] [akka:event-driven:dispatcher:global-11] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-11
+[DEBUG] [2010-09-27 18:23:59,751] [akka:event-driven:dispatcher:global-12] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-12
+[DEBUG] [2010-09-27 18:23:59,754] [akka:event-driven:dispatcher:global-13] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-13
+[DEBUG] [2010-09-27 18:23:59,755] [akka:event-driven:dispatcher:global-14] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-14
+[info] Test Passed: Get message should return the one datum as a JSON string if there is one datum and it matches the Get time-range criteria
+[DEBUG] [2010-09-27 18:23:59,768] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-27 18:23:59,769] [akka:event-driven:dispatcher:global-13] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-13
+[INFO] [2010-09-27 18:23:59,769] [Thread-8] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:23:59,770] [akka:event-driven:dispatcher:global-11] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-11
+[DEBUG] [2010-09-27 18:23:59,770] [akka:event-driven:dispatcher:global-12] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-12
+[DEBUG] [2010-09-27 18:23:59,771] [akka:event-driven:dispatcher:global-14] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-14
+[DEBUG] [2010-09-27 18:23:59,771] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:23:59,772] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[info] Test Starting: Get message should return all data as a single JSON string if there is more than one datum and all match the Get time-range criteria
+[DEBUG] [2010-09-27 18:23:59,774] [akka:event-driven:dispatcher:global-15] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-15
+[DEBUG] [2010-09-27 18:23:59,775] [akka:event-driven:dispatcher:global-16] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-16
+[DEBUG] [2010-09-27 18:23:59,777] [akka:event-driven:dispatcher:global-17] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-17
+[DEBUG] [2010-09-27 18:23:59,779] [akka:event-driven:dispatcher:global-18] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-18
+[DEBUG] [2010-09-27 18:23:59,781] [akka:event-driven:dispatcher:global-19] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-19
+[DEBUG] [2010-09-27 18:23:59,782] [akka:event-driven:dispatcher:global-20] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-20
+[DEBUG] [2010-09-27 18:23:59,785] [akka:event-driven:dispatcher:global-21] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-21
+[DEBUG] [2010-09-27 18:23:59,786] [akka:event-driven:dispatcher:global-22] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-22
+[info] Test Passed: Get message should return all data as a single JSON string if there is more than one datum and all match the Get time-range criteria
+[DEBUG] [2010-09-27 18:23:59,799] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-27 18:23:59,800] [akka:event-driven:dispatcher:global-17] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-17
+[INFO] [2010-09-27 18:23:59,800] [Thread-8] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:23:59,801] [akka:event-driven:dispatcher:global-19] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-19
+[DEBUG] [2010-09-27 18:23:59,802] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:23:59,802] [akka:event-driven:dispatcher:global-15] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-15
+[DEBUG] [2010-09-27 18:23:59,802] [akka:event-driven:dispatcher:global-21] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-21
+[DEBUG] [2010-09-27 18:23:59,803] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[info] Test Starting: Get message should return data as a single JSON string if there is data that matches the Get value criteria
+[DEBUG] [2010-09-27 18:23:59,804] [akka:event-driven:dispatcher:global-16] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-16
+[DEBUG] [2010-09-27 18:23:59,806] [akka:event-driven:dispatcher:global-18] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-18
+[info] Test Skipped: Get message should return data as a single JSON string if there is data that matches the Get value criteria
+[DEBUG] [2010-09-27 18:23:59,807] [akka:event-driven:dispatcher:global-22] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-22
+[DEBUG] [2010-09-27 18:23:59,808] [Thread-8] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-27 18:23:59,808] [akka:event-driven:dispatcher:global-20] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-20
+[info] == org.chicagoscala.awse.server.persistence.DataStorageServerTest ==
+[info] 
+[info] == org.chicagoscala.awse.util.json.JSONMapTest ==
+[info] Test Starting: toJSONString creates a JSON string from a JValue
+[info] Test Passed: toJSONString creates a JSON string from a JValue
+[info] Test Starting: The implicit mapToJSON should convert a Map to a JObject (map)
+[info] Test Passed: The implicit mapToJSON should convert a Map to a JObject (map)
+[info] Test Starting: The implicit iterableToJSON should convert a Seq to a JArray
+[info] Test Passed: The implicit iterableToJSON should convert a Seq to a JArray
+[info] Test Starting: The implicit pairToJSON should convert a Pair to a JField
+[info] Test Skipped: The implicit pairToJSON should convert a Pair to a JField
+[info] Test Starting: The implicit toJValue should return an input JValue unchanged
+[info] Test Passed: The implicit toJValue should return an input JValue unchanged
+[info] Test Starting: The implicit toJValue should convert a Map to a JObject (map)
+[info] Test Passed: The implicit toJValue should convert a Map to a JObject (map)
+[info] Test Starting: The implicit toJValue should convert an Iterable to a JArray
+[info] Test Passed: The implicit toJValue should convert an Iterable to a JArray
+[info] Test Starting: The implicit toJValue should convert a Pair to a JField
+[info] Test Passed: The implicit toJValue should convert a Pair to a JField
+[info] Test Starting: The implicit toJValue should convert a String to a JString
+[info] Test Passed: The implicit toJValue should convert a String to a JString
+[info] Test Starting: The implicit toJValue should convert a Long, Int, or BigInt to a JInt
+[info] Test Passed: The implicit toJValue should convert a Long, Int, or BigInt to a JInt
+[info] Test Starting: The implicit toJValue should convert a Double or Float to a JDouble
+[info] Test Passed: The implicit toJValue should convert a Double or Float to a JDouble
+[info] Test Starting: The implicit toJValue should convert a Boolean to a JBoolean
+[info] Test Passed: The implicit toJValue should convert a Boolean to a JBoolean
+[info] Test Starting: The implicit toJValue should convert a MongoDB ObjectId to a JString
+[info] Test Passed: The implicit toJValue should convert a MongoDB ObjectId to a JString
+[info] Test Starting: The implicit toJValue should convert any other AnyRef to a JString
+[info] Test Passed: The implicit toJValue should convert any other AnyRef to a JString
+[info] Test Starting: When converting to JSON, quoted numeric values should be converted to their values
+[info] Test Passed: When converting to JSON, quoted numeric values should be converted to their values
+[info] Test Starting: The implicit jsonToMap should convert a JSON object to a Map
+[info] Test Passed: The implicit jsonToMap should convert a JSON object to a Map
+[info] Test Starting: The implicit jsonToMap should convert BigInts in a JSON object to longs in the corresponding Map
+[info] Test Passed: The implicit jsonToMap should convert BigInts in a JSON object to longs in the corresponding Map
+[info] Test Starting: The implicit jsonToMap should convert numeric strings into their numeric values
+[info] Test Passed: The implicit jsonToMap should convert numeric strings into their numeric values
+[info] == org.chicagoscala.awse.util.json.JSONMapTest ==
+[info] 
+[info] == org.chicagoscala.awse.persistence.JSONRecordTest ==
+[info] Test Starting: Attempting to create a JSONRecord with a timestamp field throws an exception
+[info] Test Passed: Attempting to create a JSONRecord with a timestamp field throws an exception
+[info] Test Starting: Attempting to create a JSONRecord with a timestamp field that isn't a Long or String throws an exception
+[info] Test Passed: Attempting to create a JSONRecord with a timestamp field that isn't a Long or String throws an exception
+[info] Test Starting: Attempting to create a JSONRecord with an invalid timestamp string throws an exception
+[info] Test Passed: Attempting to create a JSONRecord with an invalid timestamp string throws an exception
+[info] Test Starting: The name of the timestamp key can be changed globally by setting JSONRecord.timestampKey
+[info] Test Passed: The name of the timestamp key can be changed globally by setting JSONRecord.timestampKey
+[info] Test Starting: The name of the timestamp key defaults to 'timestamp'
+[info] Test Passed: The name of the timestamp key defaults to 'timestamp'
+[info] Test Starting: JSONRecords written to a data store and retrieved have valid timestamps
+[info] Test Passed: JSONRecords written to a data store and retrieved have valid timestamps
+[info] Test Starting: JSONRecords constructed with JSON and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Passed: JSONRecords constructed with JSON and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Starting: JSONRecords constructed with Maps and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Passed: JSONRecords constructed with Maps and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Starting: JSONRecords constructed with JSON and written to a data store with embedded Double values should still those values as Doubles when retrieved
+[info] Test Passed: JSONRecords constructed with JSON and written to a data store with embedded Double values should still those values as Doubles when retrieved
+[info] Test Starting: ++(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: ++(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: ++(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: ++(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: merge(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: merge(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: merge(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: merge(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: toMap converts the record to a Map
+[info] Test Passed: toMap converts the record to a Map
+[info] Test Starting: JSONRecord.equalsIgnoringId should return true if two records are equal ignoring their ids
+[info] Test Passed: JSONRecord.equalsIgnoringId should return true if two records are equal ignoring their ids
+[info] Test Starting: JSONRecord.apply can be constructed with a JValue
+[info] Test Passed: JSONRecord.apply can be constructed with a JValue
+[info] Test Starting: JSONRecord.apply can be constructed with a java.util.Map
+[info] Test Passed: JSONRecord.apply can be constructed with a java.util.Map
+[info] Test Starting: JSONRecord.jsonWithoutId applied to a JSONRecord(JObject) returns the record's JSON without an "_id" field, if present
+[info] Test Passed: JSONRecord.jsonWithoutId applied to a JSONRecord(JObject) returns the record's JSON without an "_id" field, if present
+[info] Test Starting: JSONRecord.jsonWithoutId applied to a JSONRecord(JArray) returns the array's JSON without an "_id" field, if present
+[info] Test Passed: JSONRecord.jsonWithoutId applied to a JSONRecord(JArray) returns the array's JSON without an "_id" field, if present
+[info] Test Starting: JSONRecord.jsonWithoutId applied to a JSONRecord(JField("timestamp", ...)), i.e., without the "_id" key, returns the same JField
+[info] Test Passed: JSONRecord.jsonWithoutId applied to a JSONRecord(JField("timestamp", ...)), i.e., without the "_id" key, returns the same JField
+[info] == org.chicagoscala.awse.persistence.JSONRecordTest ==
+[info] 
+[info] == org.chicagoscala.awse.persistence.DataStoreTest ==
+[info] Test Starting: A new DataStore should have no elements
+[info] Test Passed: A new DataStore should have no elements
+[info] Test Starting: After adding N elements, a DataStore should have N elements
+[info] Test Passed: After adding N elements, a DataStore should have N elements
+[info] Test Starting: If empty, getAll should return the zero elements
+[info] Test Passed: If empty, getAll should return the zero elements
+[info] Test Starting: After adding N elements, getAll should return the same N elements, sorted by the Long timestamp
+[info] Test Passed: After adding N elements, getAll should return the same N elements, sorted by the Long timestamp
+[info] Test Starting: range returns a subset of a DataStore from a starting bounds upto AND including an upper bound should return a Traversable with the correct subset
+[info] Test Passed: range returns a subset of a DataStore from a starting bounds upto AND including an upper bound should return a Traversable with the correct subset
+[info] Test Starting: range returns an empty sequence if the start is >= the end
+[info] Test Passed: range returns an empty sequence if the start is >= the end
+[info] == org.chicagoscala.awse.persistence.DataStoreTest ==
+[info] 
+[info] == org.chicagoscala.awse.persistence.mongodb.MongoDBJSONRecordTest ==
+[info] Test Starting: JSONRecords written to a data store and retrieved have valid timestamps
+[info] Test Passed: JSONRecords written to a data store and retrieved have valid timestamps
+[info] Test Starting: JSONRecords constructed with JSON and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Passed: JSONRecords constructed with JSON and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Starting: JSONRecords constructed with Maps and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Passed: JSONRecords constructed with Maps and written to a data store with embedded Long values should still those values as Longs when retrieved
+[info] Test Starting: JSONRecords constructed with JSON and written to a data store with embedded Double values should still those values as Doubles when retrieved
+[info] Test Passed: JSONRecords constructed with JSON and written to a data store with embedded Double values should still those values as Doubles when retrieved
+[info] Test Starting: ++(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: ++(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: ++(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: ++(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: merge(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: merge(JSONRecord) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: merge(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Passed: merge(JValue) returns a new JSONRecord with the combination of the original record's JSON and the argument JSON
+[info] Test Starting: toMap converts the record to a Map
+[info] Test Passed: toMap converts the record to a Map
+[info] Test Starting: JSONRecord.equalsIgnoringId should return true if two records are equal ignoring their ids
+[info] Test Passed: JSONRecord.equalsIgnoringId should return true if two records are equal ignoring their ids
+[info] Test Starting: JSONRecord.apply can be constructed with a JValue
+[info] Test Passed: JSONRecord.apply can be constructed with a JValue
+[info] Test Starting: JSONRecord.jsonWithoutId applied to a JSONRecord(JObject) returns the record's JSON without an "_id" field, if present
+[info] Test Passed: JSONRecord.jsonWithoutId applied to a JSONRecord(JObject) returns the record's JSON without an "_id" field, if present
+[info] Test Starting: JSONRecord.jsonWithoutId applied to a JSONRecord(JArray) returns the array's JSON without an "_id" field, if present
+[info] Test Passed: JSONRecord.jsonWithoutId applied to a JSONRecord(JArray) returns the array's JSON without an "_id" field, if present
+[info] Test Starting: JSONRecord.jsonWithoutId applied to a JSONRecord(JField("timestamp", ...)), i.e., without the "_id" key, returns the same JField
+[info] Test Passed: JSONRecord.jsonWithoutId applied to a JSONRecord(JField("timestamp", ...)), i.e., without the "_id" key, returns the same JField
+[info] == org.chicagoscala.awse.persistence.mongodb.MongoDBJSONRecordTest ==
+[info] 
+[info] == org.chicagoscala.awse.domain.finance.InstrumentTest ==
+[info] Test Starting: Instrument.makeInstrumentsList should accept a vararg list of strings
+[info] Test Passed: Instrument.makeInstrumentsList should accept a vararg list of strings
+[info] Test Starting: Instrument.makeInstrumentsList should accept split each string on commas
+[info] Test Passed: Instrument.makeInstrumentsList should accept split each string on commas
+[info] Test Starting: Instrument.makeInstrumentsList should accept split each strip whitespace around names
+[info] Test Passed: Instrument.makeInstrumentsList should accept split each strip whitespace around names
+[info] == org.chicagoscala.awse.domain.finance.InstrumentTest ==
+[info] 
+[info] == org.chicagoscala.awse.domain.finance.CriteriaMapTest ==
+[info] Test Starting: withInstruments(String) adds a list of Instruments to a CriteriaMap
+[info] Test Passed: withInstruments(String) adds a list of Instruments to a CriteriaMap
+[info] Test Starting: withInstruments(List[Instrument]) adds a list of Instruments to a CriteriaMap
+[info] Test Passed: withInstruments(List[Instrument]) adds a list of Instruments to a CriteriaMap
+[info] Test Starting: withInstruments(Instrument*) adds a list of Instruments to a CriteriaMap
+[info] Test Passed: withInstruments(Instrument*) adds a list of Instruments to a CriteriaMap
+[info] Test Starting: withStatistics(String) adds a list of InstrumentStatistics to a CriteriaMap
+[info] Test Passed: withStatistics(String) adds a list of InstrumentStatistics to a CriteriaMap
+[info] Test Starting: withStatistics(List[InstrumentStatistic]) adds a list of InstrumentStatistics to a CriteriaMap
+[info] Test Passed: withStatistics(List[InstrumentStatistic]) adds a list of InstrumentStatistics to a CriteriaMap
+[info] Test Starting: withStatistics(InstrumentStatistic*) adds a list of InstrumentStatistics to a CriteriaMap
+[info] Test Passed: withStatistics(InstrumentStatistic*) adds a list of InstrumentStatistics to a CriteriaMap
+[info] Test Starting: withStart(String) adds a start time to a CriteriaMap
+[info] Test Passed: withStart(String) adds a start time to a CriteriaMap
+[info] Test Starting: withStart("") adds the current time as the start time to a CriteriaMap
+[info] Test Passed: withStart("") adds the current time as the start time to a CriteriaMap
+[info] Test Starting: withStart(bogus string) throws an exception
+[info] Test Passed: withStart(bogus string) throws an exception
+[info] Test Starting: withStart(Long) adds a start time to a CriteriaMap
+[info] Test Passed: withStart(Long) adds a start time to a CriteriaMap
+[info] Test Starting: withStart(DateTime) adds a start time to a CriteriaMap
+[info] Test Passed: withStart(DateTime) adds a start time to a CriteriaMap
+[info] Test Starting: withEnd(String) adds a end time to a CriteriaMap
+[info] Test Passed: withEnd(String) adds a end time to a CriteriaMap
+[info] Test Starting: withEnd("") adds the current time as the end time to a CriteriaMap
+[info] Test Passed: withEnd("") adds the current time as the end time to a CriteriaMap
+[info] Test Starting: withEnd(bogus string) throws an exception
+[info] Test Passed: withEnd(bogus string) throws an exception
+[info] Test Starting: withEnd(Long) adds a end time to a CriteriaMap
+[info] Test Passed: withEnd(Long) adds a end time to a CriteriaMap
+[info] Test Starting: withEnd(DateTime) adds a end time to a CriteriaMap
+[info] Test Passed: withEnd(DateTime) adds a end time to a CriteriaMap
+[info] Test Starting: unapply extracts the fields from a CriteriaMap
+[info] Test Passed: unapply extracts the fields from a CriteriaMap
+[info] == org.chicagoscala.awse.domain.finance.CriteriaMapTest ==
+[info] 
+[info] == org.chicagoscala.awse.server.finance.InstrumentAnalysisServerTest ==
+[INFO] [2010-09-27 18:24:00,449] [Thread-15] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:24:00,457] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:24:00,458] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:24:00,461] [akka:event-driven:dispatcher:global-23] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-23
+[DEBUG] [2010-09-27 18:24:00,466] [akka:event-driven:dispatcher:global-24] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-24
+[DEBUG] [2010-09-27 18:24:00,468] [akka:event-driven:dispatcher:global-25] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-25
+[DEBUG] [2010-09-27 18:24:00,473] [akka:event-driven:dispatcher:global-26] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-26
+[DEBUG] [2010-09-27 18:24:00,475] [akka:event-driven:dispatcher:global-27] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-27
+[DEBUG] [2010-09-27 18:24:00,476] [akka:event-driven:dispatcher:global-28] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-28
+[DEBUG] [2010-09-27 18:24:00,478] [akka:event-driven:dispatcher:global-29] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-29
+[DEBUG] [2010-09-27 18:24:00,480] [akka:event-driven:dispatcher:global-30] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-30
+[DEBUG] [2010-09-27 18:24:00,482] [akka:event-driven:dispatcher:global-31] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-31
+[DEBUG] [2010-09-27 18:24:00,484] [akka:event-driven:dispatcher:global-32] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-32
+[info] Test Starting: calculateStatistics returns a JSON string containing all data when all data matches the query criteria
+[DEBUG] [2010-09-27 18:24:00,495] [akka:event-driven:dispatcher:global-33] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-33
+[info] Test Passed: calculateStatistics returns a JSON string containing all data when all data matches the query criteria
+[DEBUG] [2010-09-27 18:24:00,555] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-27 18:24:00,556] [akka:event-driven:dispatcher:global-27] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-27
+[DEBUG] [2010-09-27 18:24:00,556] [akka:event-driven:dispatcher:global-30] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-30
+[INFO] [2010-09-27 18:24:00,556] [Thread-15] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:24:00,557] [akka:event-driven:dispatcher:global-24] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-24
+[DEBUG] [2010-09-27 18:24:00,557] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:24:00,558] [akka:event-driven:dispatcher:global-32] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-32
+[DEBUG] [2010-09-27 18:24:00,558] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:24:00,559] [akka:event-driven:dispatcher:global-31] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-31
+[DEBUG] [2010-09-27 18:24:00,557] [akka:event-driven:dispatcher:global-23] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-23
+[DEBUG] [2010-09-27 18:24:00,560] [akka:event-driven:dispatcher:global-28] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-28
+[DEBUG] [2010-09-27 18:24:00,560] [akka:event-driven:dispatcher:global-26] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-26
+[DEBUG] [2010-09-27 18:24:00,561] [akka:event-driven:dispatcher:global-34] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-34
+[DEBUG] [2010-09-27 18:24:00,561] [akka:event-driven:dispatcher:global-25] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-25
+[DEBUG] [2010-09-27 18:24:00,561] [akka:event-driven:dispatcher:global-33] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-33
+[DEBUG] [2010-09-27 18:24:00,562] [akka:event-driven:dispatcher:global-29] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-29
+[DEBUG] [2010-09-27 18:24:00,563] [akka:event-driven:dispatcher:global-35] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-35
+[DEBUG] [2010-09-27 18:24:00,565] [akka:event-driven:dispatcher:global-36] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-36
+[DEBUG] [2010-09-27 18:24:00,567] [akka:event-driven:dispatcher:global-37] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-37
+[DEBUG] [2010-09-27 18:24:00,568] [akka:event-driven:dispatcher:global-38] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-38
+[DEBUG] [2010-09-27 18:24:00,570] [akka:event-driven:dispatcher:global-39] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-39
+[DEBUG] [2010-09-27 18:24:00,572] [akka:event-driven:dispatcher:global-40] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-40
+[DEBUG] [2010-09-27 18:24:00,573] [akka:event-driven:dispatcher:global-41] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-41
+[DEBUG] [2010-09-27 18:24:00,575] [akka:event-driven:dispatcher:global-42] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-42
+[DEBUG] [2010-09-27 18:24:00,576] [akka:event-driven:dispatcher:global-43] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-43
+[info] Test Starting: calculateStatistics returns a JSON string containing all data that matches the time criteria
+[DEBUG] [2010-09-27 18:24:00,579] [akka:event-driven:dispatcher:global-44] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-44
+[info] Test Passed: calculateStatistics returns a JSON string containing all data that matches the time criteria
+[DEBUG] [2010-09-27 18:24:00,584] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-27 18:24:00,585] [akka:event-driven:dispatcher:global-42] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-42
+[DEBUG] [2010-09-27 18:24:00,585] [akka:event-driven:dispatcher:global-36] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-36
+[DEBUG] [2010-09-27 18:24:00,586] [akka:event-driven:dispatcher:global-37] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-37
+[DEBUG] [2010-09-27 18:24:00,586] [akka:event-driven:dispatcher:global-34] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-34
+[DEBUG] [2010-09-27 18:24:00,587] [akka:event-driven:dispatcher:global-35] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-35
+[DEBUG] [2010-09-27 18:24:00,587] [akka:event-driven:dispatcher:global-38] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-38
+[DEBUG] [2010-09-27 18:24:00,587] [akka:event-driven:dispatcher:global-44] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-44
+[DEBUG] [2010-09-27 18:24:00,587] [akka:event-driven:dispatcher:global-40] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-40
+[DEBUG] [2010-09-27 18:24:00,588] [akka:event-driven:dispatcher:global-41] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-41
+[INFO] [2010-09-27 18:24:00,587] [Thread-15] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:24:00,589] [akka:event-driven:dispatcher:global-39] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-39
+[DEBUG] [2010-09-27 18:24:00,589] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:24:00,590] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:24:00,590] [akka:event-driven:dispatcher:global-43] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-43
+[DEBUG] [2010-09-27 18:24:00,591] [akka:event-driven:dispatcher:global-45] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-45
+[DEBUG] [2010-09-27 18:24:00,593] [akka:event-driven:dispatcher:global-46] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-46
+[DEBUG] [2010-09-27 18:24:00,595] [akka:event-driven:dispatcher:global-47] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-47
+[DEBUG] [2010-09-27 18:24:00,596] [akka:event-driven:dispatcher:global-48] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-48
+[DEBUG] [2010-09-27 18:24:00,598] [akka:event-driven:dispatcher:global-49] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-49
+[DEBUG] [2010-09-27 18:24:00,599] [akka:event-driven:dispatcher:global-50] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-50
+[DEBUG] [2010-09-27 18:24:00,601] [akka:event-driven:dispatcher:global-51] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-51
+[DEBUG] [2010-09-27 18:24:00,603] [akka:event-driven:dispatcher:global-52] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-52
+[DEBUG] [2010-09-27 18:24:00,605] [akka:event-driven:dispatcher:global-53] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-53
+[DEBUG] [2010-09-27 18:24:00,606] [akka:event-driven:dispatcher:global-54] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-54
+[info] Test Starting: The time criteria are inclusive for the earliest time and the latest time
+[DEBUG] [2010-09-27 18:24:00,610] [akka:event-driven:dispatcher:global-55] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-55
+[info] Test Passed: The time criteria are inclusive for the earliest time and the latest time
+[DEBUG] [2010-09-27 18:24:00,614] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[DEBUG] [2010-09-27 18:24:00,615] [akka:event-driven:dispatcher:global-50] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-50
+[INFO] [2010-09-27 18:24:00,615] [Thread-15] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:24:00,615] [akka:event-driven:dispatcher:global-54] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-54
+[DEBUG] [2010-09-27 18:24:00,616] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:24:00,616] [akka:event-driven:dispatcher:global-48] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-48
+[DEBUG] [2010-09-27 18:24:00,617] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:24:00,617] [akka:event-driven:dispatcher:global-46] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-46
+[DEBUG] [2010-09-27 18:24:00,616] [akka:event-driven:dispatcher:global-52] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-52
+[DEBUG] [2010-09-27 18:24:00,618] [akka:event-driven:dispatcher:global-53] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-53
+[DEBUG] [2010-09-27 18:24:00,619] [akka:event-driven:dispatcher:global-56] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-56
+[DEBUG] [2010-09-27 18:24:00,620] [akka:event-driven:dispatcher:global-49] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-49
+[DEBUG] [2010-09-27 18:24:00,620] [akka:event-driven:dispatcher:global-55] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-55
+[DEBUG] [2010-09-27 18:24:00,620] [akka:event-driven:dispatcher:global-51] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-51
+[DEBUG] [2010-09-27 18:24:00,620] [akka:event-driven:dispatcher:global-45] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-45
+[DEBUG] [2010-09-27 18:24:00,620] [akka:event-driven:dispatcher:global-47] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-47
+[DEBUG] [2010-09-27 18:24:00,621] [akka:event-driven:dispatcher:global-57] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-57
+[DEBUG] [2010-09-27 18:24:00,623] [akka:event-driven:dispatcher:global-58] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-58
+[DEBUG] [2010-09-27 18:24:00,625] [akka:event-driven:dispatcher:global-59] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-59
+[DEBUG] [2010-09-27 18:24:00,627] [akka:event-driven:dispatcher:global-60] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-60
+[DEBUG] [2010-09-27 18:24:00,629] [akka:event-driven:dispatcher:global-61] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-61
+[DEBUG] [2010-09-27 18:24:00,631] [akka:event-driven:dispatcher:global-62] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-62
+[DEBUG] [2010-09-27 18:24:00,632] [akka:event-driven:dispatcher:global-63] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-63
+[DEBUG] [2010-09-27 18:24:00,634] [akka:event-driven:dispatcher:global-64] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-64
+[DEBUG] [2010-09-27 18:24:00,636] [akka:event-driven:dispatcher:global-65] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-65
+[info] Test Starting: calculateStatistics returns a JSON string containing all data that matches the instrument criteria
+[DEBUG] [2010-09-27 18:24:00,639] [akka:event-driven:dispatcher:global-66] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-66
+[info] Test Passed: calculateStatistics returns a JSON string containing all data that matches the instrument criteria
+[DEBUG] [2010-09-27 18:24:00,643] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[INFO] [2010-09-27 18:24:00,644] [Thread-15] o.c.a.s.p.DataStorageServer: Creating: DataStoreServer(testService)
+[DEBUG] [2010-09-27 18:24:00,644] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:24:00,645] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:24:00,646] [akka:event-driven:dispatcher:global-64] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-64
+[DEBUG] [2010-09-27 18:24:00,646] [akka:event-driven:dispatcher:global-59] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-59
+[DEBUG] [2010-09-27 18:24:00,647] [akka:event-driven:dispatcher:global-66] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-66
+[DEBUG] [2010-09-27 18:24:00,647] [akka:event-driven:dispatcher:global-61] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-61
+[DEBUG] [2010-09-27 18:24:00,647] [akka:event-driven:dispatcher:global-58] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-58
+[DEBUG] [2010-09-27 18:24:00,647] [akka:event-driven:dispatcher:global-63] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-63
+[DEBUG] [2010-09-27 18:24:00,648] [akka:event-driven:dispatcher:global-56] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-56
+[DEBUG] [2010-09-27 18:24:00,649] [akka:event-driven:dispatcher:global-65] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-65
+[DEBUG] [2010-09-27 18:24:00,648] [akka:event-driven:dispatcher:global-60] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-60
+[DEBUG] [2010-09-27 18:24:00,649] [akka:event-driven:dispatcher:global-57] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-57
+[DEBUG] [2010-09-27 18:24:00,648] [akka:event-driven:dispatcher:global-62] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-62
+[DEBUG] [2010-09-27 18:24:00,652] [akka:event-driven:dispatcher:global-67] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-67
+[DEBUG] [2010-09-27 18:24:00,653] [akka:event-driven:dispatcher:global-68] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-68
+[DEBUG] [2010-09-27 18:24:00,655] [akka:event-driven:dispatcher:global-69] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-69
+[DEBUG] [2010-09-27 18:24:00,657] [akka:event-driven:dispatcher:global-70] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-70
+[DEBUG] [2010-09-27 18:24:00,658] [akka:event-driven:dispatcher:global-71] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-71
+[DEBUG] [2010-09-27 18:24:00,659] [akka:event-driven:dispatcher:global-72] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-72
+[DEBUG] [2010-09-27 18:24:00,661] [akka:event-driven:dispatcher:global-73] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-73
+[DEBUG] [2010-09-27 18:24:00,662] [akka:event-driven:dispatcher:global-74] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-74
+[DEBUG] [2010-09-27 18:24:00,664] [akka:event-driven:dispatcher:global-75] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-75
+[DEBUG] [2010-09-27 18:24:00,665] [akka:event-driven:dispatcher:global-76] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-76
+[info] Test Starting: calculateStatistics returns a JSON string containing all data that matches the statistics criteria
+[info] Test Skipped: calculateStatistics returns a JSON string containing all data that matches the statistics criteria
+[DEBUG] [2010-09-27 18:24:00,667] [Thread-15] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Shutting down ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+[info] == org.chicagoscala.awse.server.finance.InstrumentAnalysisServerTest ==
+[DEBUG] [2010-09-27 18:24:00,668] [akka:event-driven:dispatcher:global-69] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-69
+[DEBUG] [2010-09-27 18:24:00,668] [akka:event-driven:dispatcher:global-74] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-74
+[DEBUG] [2010-09-27 18:24:00,669] [akka:event-driven:dispatcher:global-70] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-70
+[DEBUG] [2010-09-27 18:24:00,669] [akka:event-driven:dispatcher:global-71] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-71
+[DEBUG] [2010-09-27 18:24:00,670] [akka:event-driven:dispatcher:global-76] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-76
+[DEBUG] [2010-09-27 18:24:00,670] [akka:event-driven:dispatcher:global-73] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-73
+[DEBUG] [2010-09-27 18:24:00,671] [akka:event-driven:dispatcher:global-72] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-72
+[DEBUG] [2010-09-27 18:24:00,671] [akka:event-driven:dispatcher:global-68] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-68
+[DEBUG] [2010-09-27 18:24:00,671] [akka:event-driven:dispatcher:global-67] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-67
+[DEBUG] [2010-09-27 18:24:00,672] [akka:event-driven:dispatcher:global-75] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Exiting thread akka:event-driven:dispatcher:global-75
+[info] 
+[info] == org.chicagoscala.awse.persistence.inmemory.InMemoryDataStoreTest ==
+[info] Test Starting: A new DataStore should have no elements
+[info] Test Passed: A new DataStore should have no elements
+[info] Test Starting: After adding N elements, a DataStore should have N elements
+[info] Test Passed: After adding N elements, a DataStore should have N elements
+[info] Test Starting: If empty, getAll should returns zero elements
+[info] Test Passed: If empty, getAll should returns zero elements
+[info] Test Starting: After adding N elements, getAll should return the same N elements, sorted by the Long timestamp
+[info] Test Passed: After adding N elements, getAll should return the same N elements, sorted by the Long timestamp
+[info] Test Starting: range returns a subset of a DataStore from a starting bounds upto AND including an upper bound should return a Traversable with the correct subset
+[info] Test Passed: range returns a subset of a DataStore from a starting bounds upto AND including an upper bound should return a Traversable with the correct subset
+[info] Test Starting: range returns a subset of a DataStore from a starting bounds upto AND including an upper bound, with a maximum number of values to return
+[info] Test Passed: range returns a subset of a DataStore from a starting bounds upto AND including an upper bound, with a maximum number of values to return
+[info] Test Starting: range returns all of the data in the range if the maximum number is greater than the size of the data set
+[info] Test Passed: range returns all of the data in the range if the maximum number is greater than the size of the data set
+[info] Test Starting: If the start is < 0, range uses 0. If the to is > size, range uses size
+[info] Test Passed: If the start is < 0, range uses 0. If the to is > size, range uses size
+[info] Test Starting: range returns an empty equence if the start is > the end
+[info] Test Passed: range returns an empty equence if the start is > the end
+[info] Test Starting: range returns a one-element sequence if the start is = the end
+[info] Test Passed: range returns a one-element sequence if the start is = the end
+[info] Test Starting: for big data set, range returns expected data
+[info] Test Passed: for big data set, range returns expected data
+[info] == org.chicagoscala.awse.persistence.inmemory.InMemoryDataStoreTest ==
+[info] 
+[info] == org.chicagoscala.awse.server.rest.RestfulDataPublisherTest ==
+[info] Test Starting: getAllDataFor returns a JSON string containing all data when all data matches the query criteria
+[DEBUG] [2010-09-27 18:24:01,225] [Thread-17] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Creating a se.scalablesolutions.akka.dispatch.Dispatchers$globalExecutorBasedEventDrivenDispatcher$ with config [core-pool:16,max-pool:128,timeout:60000,allowCoreTimeout:false,rejectPolicy:CallerRunsPolicy]
+[DEBUG] [2010-09-27 18:24:01,225] [Thread-17] s.s.a.d.Dispatchers$globalExecutorBasedEventDrivenDispatcher$: Starting up ExecutorBasedEventDrivenDispatcher[akka:event-driven:dispatcher:global]
+	with throughput [5]
+[DEBUG] [2010-09-27 18:24:01,228] [akka:event-driven:dispatcher:global-77] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-77
+[INFO] [2010-09-27 18:24:01,238] [Thread-17] o.c.a.s.r.RestfulDataPublisherTest$$anon$1: financial data result = {"financial-data":[{"timestamp":1285629831191,"symbol":"A","price":0.0},{"timestamp":1285629832191,"...
+[info] Test Passed: getAllDataFor returns a JSON string containing all data when all data matches the query criteria
+[info] Test Starting: getAllDataFor returns a JSON string containing all data that matches the time criteria
+[DEBUG] [2010-09-27 18:24:01,242] [akka:event-driven:dispatcher:global-78] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-78
+[INFO] [2010-09-27 18:24:01,243] [Thread-17] o.c.a.s.r.RestfulDataPublisherTest$$anon$1: financial data result = {"financial-data":[{"timestamp":1285629832191,"symbol":"C","price":10.0},{"timestamp":1285629833191,...
+[info] Test Passed: getAllDataFor returns a JSON string containing all data that matches the time criteria
+[info] Test Starting: The time criteria are inclusive for the earliest time and exclusive for the latest time
+[DEBUG] [2010-09-27 18:24:01,246] [akka:event-driven:dispatcher:global-79] s.s.a.d.ThreadPoolBuilder$MonitorableThread: Created thread akka:event-driven:dispatcher:global-79
+[INFO] [2010-09-27 18:24:01,247] [Thread-17] o.c.a.s.r.RestfulDataPublisherTest$$anon$1: financial data result = {"financial-data":[{"timestamp":1285629832191,"symbol":"C","price":10.0},{"timestamp":1285629833191,...
+[info] Test Passed: The time criteria are inclusive for the earliest time and exclusive for the latest time
+[info] Test Starting: getAllDataFor returns a JSON string containing all data that matches the instrument criteria
+[info] Test Skipped: getAllDataFor returns a JSON string containing all data that matches the instrument criteria
+[info] Test Starting: getAllDataFor returns a JSON string containing all data that matches the statistics criteria
+[info] Test Skipped: getAllDataFor returns a JSON string containing all data that matches the statistics criteria
+[info] Test Starting: if one or both input times are invalid, getAllDataFor should return an error message
+[info] Test Passed: if one or both input times are invalid, getAllDataFor should return an error message
+[info] Test Starting: getAllDataFor should return an error message is there are appear to be no worker servers available
+[ERROR] [2010-09-27 18:24:01,267] [Thread-17] o.c.a.u.error$: 
+org.chicagoscala.awse.server.rest.NoWorkersAvailable$: No worker servers appear to be available!
+	at org.chicagoscala.awse.server.rest.NoWorkersAvailable$.<clinit>(RestfulDataPublisher.scala) ~[classes/:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisher.getAllDataFor(RestfulDataPublisher.scala:79) ~[classes/:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest$$anonfun$6.apply$mcV$sp(RestfulDataPublisherTest.scala:91) ~[test-classes/:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest$$anonfun$6.apply(RestfulDataPublisherTest.scala:90) ~[test-classes/:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest$$anonfun$6.apply(RestfulDataPublisherTest.scala:90) ~[test-classes/:na]
+	at org.scalatest.FunSuite$$anon$2.apply(FunSuite.scala:1158) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.scalatest.Suite$class.withFixture(Suite.scala:1509) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest.withFixture(RestfulDataPublisherTest.scala:17) [test-classes/:na]
+	at org.scalatest.FunSuite$class.runTest(FunSuite.scala:1155) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest.org$scalatest$BeforeAndAfterEach$$super$runTest(RestfulDataPublisherTest.scala:17) [test-classes/:na]
+	at org.scalatest.BeforeAndAfterEach$class.runTest(BeforeAndAfterEach.scala:167) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest.runTest(RestfulDataPublisherTest.scala:17) [test-classes/:na]
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1264) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.scalatest.FunSuite$$anonfun$runTests$1.apply(FunSuite.scala:1255) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:61) [scala-library.jar:na]
+	at scala.collection.immutable.List.foreach(List.scala:45) [scala-library.jar:na]
+	at org.scalatest.FunSuite$class.runTests(FunSuite.scala:1255) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest.runTests(RestfulDataPublisherTest.scala:17) [test-classes/:na]
+	at org.scalatest.Suite$class.run(Suite.scala:1804) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest.org$scalatest$FunSuite$$super$run(RestfulDataPublisherTest.scala:17) [test-classes/:na]
+	at org.scalatest.FunSuite$class.run(FunSuite.scala:1304) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at org.chicagoscala.awse.server.rest.RestfulDataPublisherTest.run(RestfulDataPublisherTest.scala:17) [test-classes/:na]
+	at org.scalatest.tools.ScalaTestFramework$ScalaTestRunner.run(ScalaTestFramework.scala:40) [scalatest-1.2-for-scala-2.8.0.final-SNAPSHOT.jar:na]
+	at sbt.TestRunner.run(TestFramework.scala:52) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.TestRunner.runTest$1(TestFramework.scala:66) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.TestRunner.run(TestFramework.scala:75) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11.runTest$2(TestFramework.scala:192) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.TestFramework$$anonfun$9$$anonfun$apply$11$$anonfun$apply$12.apply(TestFramework.scala:203) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.NamedTestTask.run(TestFramework.scala:91) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.ScalaProject$$anonfun$sbt$ScalaProject$$toTask$1.apply(ScalaProject.scala:187) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.TaskManager$Task.invoke(TaskManager.scala:62) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.impl.RunTask.doRun$1(RunTask.scala:77) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.impl.RunTask.runTask(RunTask.scala:85) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.impl.RunTask.sbt$impl$RunTask$$runIfNotRoot(RunTask.scala:60) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.impl.RunTask$$anonfun$runTasksExceptRoot$2.apply(RunTask.scala:48) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.Distributor$Run$Worker$$anonfun$2.apply(ParallelRunner.scala:131) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.Control$.trapUnit(Control.scala:19) [sbt_2.7.7-0.7.4.jar:na]
+	at sbt.Distributor$Run$Worker.run(ParallelRunner.scala:131) [sbt_2.7.7-0.7.4.jar:na]
+[info] Test Passed: getAllDataFor should return an error message is there are appear to be no worker servers available
+[info] == org.chicagoscala.awse.server.rest.RestfulDataPublisherTest ==
+[info] 
+[info] == test-finish ==
+[error] Error: Total 106, Failed 0, Errors 0, Passed 101, Skipped 5
+[info] == test-finish ==
+[info] 
+[info] == test-cleanup ==
+[info] == test-cleanup ==
+[error] Error running org.chicagoscala.awse.persistence.mongodb.MongoDBDataStoreTest: ERROR occurred during testing.
+[error] Error running test: One or more subtasks failed
+[info] 
+[info] Total time: 19 s, completed Sep 27, 2010 6:24:01 PM
+[info] 
+[info] Total session time: 20 s, completed Sep 27, 2010 6:24:01 PM
+[error] Error during build.

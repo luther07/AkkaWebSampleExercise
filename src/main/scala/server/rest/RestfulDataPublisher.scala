@@ -107,23 +107,24 @@ class RestfulDataPublisher extends Logging {
           case n => s.charAt(0).toUpper to s.charAt(n-1).toUpper
         }
       }
-      val results = getStatsFromInstrumentAnalysisServerSupervisors(GetInstrumentList(symbolRange))
+      val results = getStatsFromInstrumentAnalysisServerSupervisors(GetInstrumentList(symbolRange, "stock_symbol"))
       log.info("Rest: instruments results: "+results)
-      val result = compact(render(JSONMap.toJValue(Map("instrument-list" -> results))))
+      val result = compact(render(JSONMap.toJValue(
+          Map("instrument-list" -> results, "instrument_symbols_key" -> "stock_symbol"))))
       val length = if (result.length > 200) 200 else result.length
       log.info("instrument list result = "+result.substring(0,length)+"...")
       result
     } catch {
       case NoWorkersAvailable =>
-        makeAllInstrumentsErrorString("", NoWorkersAvailable)
+        makeAllInstrumentsErrorString(instruments, "", NoWorkersAvailable)
       case iae: CriteriaMap.InvalidTimeString => 
-        makeAllInstrumentsErrorString("", iae)
+        makeAllInstrumentsErrorString(instruments, "", iae)
       case fte: FutureTimeoutException =>
-        makeAllInstrumentsErrorString("Actors timed out", fte)
+        makeAllInstrumentsErrorString(instruments, "Actors timed out", fte)
       case awsee: AkkaWebSampleExerciseException =>
-        makeAllInstrumentsErrorString("Invalid input", awsee)
+        makeAllInstrumentsErrorString(instruments, "Invalid input", awsee)
       case th: Throwable => 
-        makeAllInstrumentsErrorString("An unexpected problem occurred during processing the request", th)
+        makeAllInstrumentsErrorString(instruments, "An unexpected problem occurred during processing the request", th)
     }
     
   
@@ -146,6 +147,6 @@ class RestfulDataPublisher extends Logging {
     "{\"error\": \"" + (if (message.length > 0) (message + ". ") else "") + th.getMessage + ". Investment instruments = '" + 
       instruments + "', statistics = '" + stats + "', start = '" + start + "', end = '" + end + "'.\"}"
 
-  protected def makeAllInstrumentsErrorString(message: String, th: Throwable) =
-    "{\"error\": \"Getting all instruments failed. " + (if (message.length > 0) (message + ". ") else "") + th.getMessage + "\"}"
+  protected def makeAllInstrumentsErrorString(instruments: String, message: String, th: Throwable) =
+    "{\"error\": \"Getting instruments for " + instruments + " failed. " + (if (message.length > 0) (message + ". ") else "") + th.getMessage + "\"}"
 }
