@@ -92,16 +92,15 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
   }
 
   // Hack!
-<<<<<<< HEAD
-  protected[persistence] def getInstrumentList(prefix: String): JValue = dataStore match {
-	case mongo: MongoDBDataStore => 
-		val data = for {
-			json <- mongo.getInstrumentList(prefix)
-		} yield json
-		toJSON(data toList)
-	case _ => throw new RuntimeException("Can't get the instrument list from datastore "+dataStore)
-	}
-=======
+  //protected[persistence] def getInstrumentList(prefix: String, keyForInstrumentSymbols: String): JValue = dataStore match {
+	//case mongo: MongoDBDataStore => 
+	//	val data = for {
+	////		json <- mongo.getInstrumentList(prefix, keyForInstrumentSymbols)
+	//	} yield json
+	//	toJSON(data toList)
+	//case _ => throw new RuntimeException("Can't get the instrument list from datastore "+dataStore)
+	//}
+
   protected[persistence] def getInstrumentList(prefix: String, keyForInstrumentSymbols: String): JValue = {
     log.debug(actorName + ": Starting getInstrumentList for prefix = "+prefix+" and symbol key = "+keyForInstrumentSymbols)
     dataStore match {
@@ -115,7 +114,6 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
       case _ => throw new RuntimeException("Can't get the instrument list from datastore "+dataStore)
     }
   }
->>>>>>> deanwampler-origin/exercise4_start
   
   protected[persistence] def putData(jsonRecord: JSONRecord) = {
     log.debug(actorName + " PUT: storing JSON: " + jsonShortStr(jsonRecord.toString))

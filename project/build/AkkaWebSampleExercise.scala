@@ -62,14 +62,12 @@ class AkkaWebSampleExercise(info: ProjectInfo) extends DefaultWebProject(info)  
   lazy val AKKA_VERSION          = "0.10"
   lazy val ATMO_VERSION          = "0.6.1"
   lazy val CAMEL_VERSION         = "2.4.0"
-<<<<<<< HEAD
-=======
   lazy val CASBAH_VERSION        = "1.0.8.5"
   lazy val JERSEY_VERSION        = "1.2"
->>>>>>> deanwampler-origin/exercise4_start
   lazy val LIFT_VERSION          = "2.1-M1"
   lazy val MULTIVERSE_VERSION    = "0.6"
   lazy val SCALATEST_VERSION     = "1.2-for-scala-2.8.0.final-SNAPSHOT"
+  
   lazy val ECLIPSE_JETTY_VERSION = "7.1.6.v20100715" //  "7.0.2.v20100331"
   lazy val MORTBAY_JETTY_VERSION = "6.1.22"  
 
