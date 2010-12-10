@@ -60,6 +60,7 @@ class MongoDBDataStore(
 	if (criteria.contains("stock_symbol"))	{
 	  qb.and("stock_symbol").in(myBasicDBList)
 	}
+
     qb.and(JSONRecord.timestampKey).
       greaterThanEquals(dateTimeToAnyValue(from)).
       lessThanEquals(dateTimeToAnyValue(to))
