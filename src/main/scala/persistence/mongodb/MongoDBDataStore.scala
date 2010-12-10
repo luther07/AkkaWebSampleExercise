@@ -55,6 +55,11 @@ class MongoDBDataStore(
   
   def range(from: DateTime, to: DateTime, criteria: Map[String, Any] = Map.empty, maxNum: Int): Iterable[JSONRecord] = try {
     val qb = new com.mongodb.QueryBuilder
+	val myBasicDBList = new com.mongodb.BasicDBList()
+	
+	if (criteria.contains("stock_symbol"))	{
+	  qb.and("stock_symbol").in(myBasicDBList)
+	}
     qb.and(JSONRecord.timestampKey).
       greaterThanEquals(dateTimeToAnyValue(from)).
       lessThanEquals(dateTimeToAnyValue(to))
