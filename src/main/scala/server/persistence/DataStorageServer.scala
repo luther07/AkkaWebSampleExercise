@@ -77,7 +77,7 @@ class DataStorageServer(val serviceName: String, val dataStore: DataStore)
     val end: DateTime   = extractTime(criteria, "end",   new DateTime)
     try {
       val data = for {
-        json <- dataStore.range(start, end)
+        json <- dataStore.range(start, end, criteria)
       } yield json
       val result = toJSON(data toList)
       log.debug(actorName + ": GET returning response for start, end = " + 
