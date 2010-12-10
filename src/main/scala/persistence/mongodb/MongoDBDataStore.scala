@@ -53,7 +53,7 @@ class MongoDBDataStore(
     case Some(dbo) => Some(JSONRecord(dbo.toMap))
   }
   
-  def range(from: DateTime, to: DateTime, maxNum: Int): Iterable[JSONRecord] = try {
+  def range(from: DateTime, to: DateTime, criteria: Map[String, Any] = Map.empty, maxNum: Int): Iterable[JSONRecord] = try {
     val qb = new com.mongodb.QueryBuilder
     qb.and(JSONRecord.timestampKey).
       greaterThanEquals(dateTimeToAnyValue(from)).
